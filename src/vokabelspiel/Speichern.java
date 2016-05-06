@@ -19,8 +19,8 @@ public class Speichern extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtDeutschesWort;
 	private JTextField txtEnglischesWort;
-	int a;
-	int b = 0;
+	private String a;
+	private int b = 0;
 
 	/**
 	 * Launch the application.
@@ -93,15 +93,15 @@ public class Speichern extends JFrame {
 		btnSpeichern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (rdbtnAlltag.isSelected()) {
-					a = 1;
+					a = "Alltag";
 				} else if (rdbtnNatur.isSelected()) {
-					a = 2;
+					a = "Natur";
 				} else if (rdbtnFahrzeuge.isSelected()) {
-					a = 3;
+					a = "Fahrzeuge";
 				} else if (rdbtnLebensmittel.isSelected()) {
-					a = 4;
+					a = "Lebensmittel";
 				} else if (rdbtnFachbegriffe.isSelected()) {
-					a = 5;
+					a = "Fachbegriffe";
 					// wenn einer der Knöpfe ausgewählt wurde --> normal im
 					// Programm weitergehen
 				}
@@ -112,7 +112,8 @@ public class Speichern extends JFrame {
 							txtEnglischesWort.getText() + " = " + txtDeutschesWort.getText() + " speichern?",
 							"Speichern", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null,
 							new String[] { "Ja", "Nein" }, "Nein");
-					JOptionPane.showMessageDialog(null, Verwaltung.speichern(txtEnglischesWort, txtDeutschesWort, a, b));
+					JOptionPane.showMessageDialog(null,
+							Verwaltung.speichern(txtEnglischesWort, txtDeutschesWort, a, b));
 					// wenn kein Knopf ausgewählt wurde PopUp Femster mit
 					// Fehlermeldung
 				} else if (rdbtnAlltag.isSelected() == false && rdbtnNatur.isSelected() == false

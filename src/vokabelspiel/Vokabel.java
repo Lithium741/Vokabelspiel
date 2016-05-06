@@ -4,11 +4,11 @@ public class Vokabel {
 
 	private String englisch;
 	private String deutsch;
-	private int kategorie;
+	private String kategorie;
 	private int fach = 0;
 	private int zaehler = 0;
 
-	public Vokabel(String englisch, String deutsch, int kategorie) {
+	public Vokabel(String englisch, String deutsch, String kategorie) {
 		this.englisch = englisch;
 		this.deutsch = deutsch;
 		this.kategorie = kategorie;
@@ -41,11 +41,11 @@ public class Vokabel {
 		this.deutsch = deutsch;
 	}
 
-	public int getKategorie() {
+	public String getKategorie() {
 		return kategorie;
 	}
 
-	public void setKategorie(int kategorie) {
+	public void setKategorie(String kategorie) {
 		this.kategorie = kategorie;
 	}
 

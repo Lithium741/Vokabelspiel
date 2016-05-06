@@ -75,7 +75,7 @@ public class Start extends JFrame {
 				Speichern.invoke();
 			}
 		});
-		btnSpeichern.setBounds(10, 26, 117, 29);
+		btnSpeichern.setBounds(10, 26, 133, 29);
 		Verwaltung.add(btnSpeichern);	
 		
 		JButton btnLschen = new JButton("L\u00F6schen");
@@ -84,7 +84,7 @@ public class Start extends JFrame {
 				Löschen.invoke();
 			}
 		});
-		btnLschen.setBounds(10, 80, 117, 29);
+		btnLschen.setBounds(10, 80, 133, 29);
 		Verwaltung.add(btnLschen);
 		
 		JButton btnDateiSpeichern = new JButton("Datei Speichern");
@@ -93,11 +93,16 @@ public class Start extends JFrame {
 				DateiSpeichern.invoke();
 			}
 		});
-		btnDateiSpeichern.setBounds(10, 134, 117, 29);
+		btnDateiSpeichern.setBounds(10, 134, 133, 29);
 		Verwaltung.add(btnDateiSpeichern);
 		
 		JButton btnDateiLaden = new JButton("Datei Laden");
-		btnDateiLaden.setBounds(10, 188, 117, 29);
+		btnDateiLaden.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				DateiLaden.invoke();
+			}
+		});
+		btnDateiLaden.setBounds(10, 188, 133, 29);
 		Verwaltung.add(btnDateiLaden);
 	}
 }

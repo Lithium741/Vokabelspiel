@@ -7,13 +7,19 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 
 public class DateiLaden extends JFrame {
 
 	private JPanel contentPane;
+	private JFileChooser fc;
+	private int a;
 
 	/**
 	 * Launch the application.
@@ -42,24 +48,34 @@ public class DateiLaden extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnDateiLaden = new JButton("Datei Laden");
-		btnDateiLaden.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnDateiLaden.setBounds(10, 82, 150, 23);
-		contentPane.add(btnDateiLaden);
+		JLabel lblAnzeige = new JLabel("Anzeige");
+		lblAnzeige.setBounds(216, 39, 208, 19);
+		contentPane.add(lblAnzeige);
 		
 		JButton btnDateiAuswhlen = new JButton("Datei Ausw\u00E4hlen");
 		btnDateiAuswhlen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				//AUswählen einer Datei
+				fc = new JFileChooser();
+				a = fc.showOpenDialog(null);
+				try {
+					lblAnzeige.setText(fc.getSelectedFile().getName());
+					JOptionPane.showMessageDialog(null, fc.getSelectedFile().getName());
+				}catch (NullPointerException e){
+					
+				}
 			}
 		});
 		btnDateiAuswhlen.setBounds(10, 35, 150, 23);
 		contentPane.add(btnDateiAuswhlen);
 		
-		JLabel lblAnzeige = new JLabel("Anzeige");
-		lblAnzeige.setBounds(216, 39, 208, 19);
-		contentPane.add(lblAnzeige);
+		JButton btnDateiLaden = new JButton("Datei Laden");
+		btnDateiLaden.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, Verwaltung.dateiLaden(a, fc.getSelectedFile()));
+			}
+		});
+		btnDateiLaden.setBounds(10, 82, 150, 23);
+		contentPane.add(btnDateiLaden);
 	}
 }
