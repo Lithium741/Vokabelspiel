@@ -4,11 +4,11 @@ public class Vokabel {
 
 	private String englisch;
 	private String deutsch;
-	private String kategorie;
+	private int kategorie;
 	private int fach = 0;
 	private int zaehler = 0;
 
-	public Vokabel(String englisch, String deutsch, String kategorie) {
+	public Vokabel(String englisch, String deutsch, int kategorie) {
 		this.englisch = englisch;
 		this.deutsch = deutsch;
 		this.kategorie = kategorie;
@@ -17,7 +17,7 @@ public class Vokabel {
 	public void sprung() {
 		if (zaehler == 3) {
 			fach = 4;
-		} else if (fach <= 3) {
+		} else if (fach == 3) {
 			zaehler += 1;
 		} else if (fach < 3) {
 			fach += 1;
@@ -41,11 +41,11 @@ public class Vokabel {
 		this.deutsch = deutsch;
 	}
 
-	public String getKategorie() {
+	public int getKategorie() {
 		return kategorie;
 	}
 
-	public void setKategorie(String kategorie) {
+	public void setKategorie(int kategorie) {
 		this.kategorie = kategorie;
 	}
 

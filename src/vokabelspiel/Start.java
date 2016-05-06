@@ -25,7 +25,9 @@ public class Start extends JFrame {
 			public void run() {
 				try {
 					Start frame = new Start();
+					//erstellen Fenster
 					frame.setVisible(true);
+					//fängt Fehlermeldung ab damit das Programm weiterläuft
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -39,19 +41,20 @@ public class Start extends JFrame {
 	public Start() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 473, 324);
+		//erstellen Panel,auf den später die Elemente gezogen werden (Fenster im Fenster)
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.X_AXIS));
 		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP); //Erstellen Tabbed Pane (versch. Tabs zB Spiel/Verwaltung)
 		contentPane.add(tabbedPane);
 		
-		JPanel Spiele = new JPanel();
+		JPanel Spiele = new JPanel();//Neues Panel "Spiel"
 		tabbedPane.addTab("Spiele", null, Spiele, null);
 		Spiele.setLayout(null);
 		
-		JButton btnSpiel = new JButton("Spiel 1");
+		JButton btnSpiel = new JButton("Spiel 1");//Erster Button 
 		btnSpiel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
@@ -59,8 +62,8 @@ public class Start extends JFrame {
 				
 			}
 		});
-		btnSpiel.setBounds(6, 39, 117, 29);
-		Spiele.add(btnSpiel);
+		btnSpiel.setBounds(10, 11, 117, 29);
+		Spiele.add(btnSpiel);//Gelegt in den Panel "Spiele"
 		
 		JPanel Verwaltung = new JPanel();
 		tabbedPane.addTab("Verwaltung", null, Verwaltung, null);
@@ -69,11 +72,32 @@ public class Start extends JFrame {
 		JButton btnSpeichern = new JButton("Speichern");
 		btnSpeichern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				VerwaltungGUI.invoke();
+				Speichern.invoke();
 			}
 		});
-		btnSpeichern.setBounds(6, 6, 117, 29);
+		btnSpeichern.setBounds(10, 26, 117, 29);
 		Verwaltung.add(btnSpeichern);	
+		
+		JButton btnLschen = new JButton("L\u00F6schen");
+		btnLschen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Löschen.invoke();
+			}
+		});
+		btnLschen.setBounds(10, 80, 117, 29);
+		Verwaltung.add(btnLschen);
+		
+		JButton btnDateiSpeichern = new JButton("Datei Speichern");
+		btnDateiSpeichern.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DateiSpeichern.invoke();
+			}
+		});
+		btnDateiSpeichern.setBounds(10, 134, 117, 29);
+		Verwaltung.add(btnDateiSpeichern);
+		
+		JButton btnDateiLaden = new JButton("Datei Laden");
+		btnDateiLaden.setBounds(10, 188, 117, 29);
+		Verwaltung.add(btnDateiLaden);
 	}
 }
