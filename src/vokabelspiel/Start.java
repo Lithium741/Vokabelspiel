@@ -57,7 +57,6 @@ public class Start extends JFrame {
 		JButton btnSpiel = new JButton("Spiel 1");//Erster Button 
 		btnSpiel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
 				Spiele1GUI.invoke();
 				
 			}

@@ -2,6 +2,8 @@ package vokabelspiel;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -69,5 +71,23 @@ public class Verwaltung {
 		}
 		s.close();
 		return file.getName() + " geladen";
+	}
+
+	public static String dateiSpeichern(int a, File file) {
+		try {
+			if (a == JFileChooser.APPROVE_OPTION) {
+				FileWriter writer = new FileWriter(file);
+				for (Vokabel temp : vokabeln) {
+					writer.write(temp.getEnglisch() + "," + temp.getDeutsch() + "," + temp.getKategorie());
+					writer.write("\r\n");
+				}
+				writer.close();
+			} else {
+				return "";
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "Gespeichert";
 	}
 }
