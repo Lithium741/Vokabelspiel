@@ -13,7 +13,7 @@ public class Verwaltung {
 
 	public static ArrayList<Vokabel> vokabeln = new ArrayList<Vokabel>();
 
-	// speichern/hinzufügen einer neuer Vokabel
+	// speichern/hinzufügen einer neuen Vokabel
 	public static String speichern(JTextField wortA, JTextField wortB, String a, int b) {
 		if (b == 0) {
 			vokabeln.add(new Vokabel(wortA.getText(), wortB.getText(), a));
@@ -21,6 +21,28 @@ public class Verwaltung {
 		} else {
 			return "Nicht gespeichert";
 		}
+	}
+
+	public static String loeschen(JTextField wort, int b) {
+		for (Vokabel temp : vokabeln) {
+			if (temp.getDeutsch().equals(wort.getText())) {
+				if (b == 0) {
+					vokabeln.remove(temp);
+					return temp.getDeutsch() + " = " + temp.getEnglisch() + " gelöscht!";
+				} else {
+
+				}
+			} else if (temp.getEnglisch().equals(wort.getText())) {
+				if (b == 0) {
+					vokabeln.remove(temp);
+					return temp.getDeutsch() + " = " + temp.getEnglisch() + " gelöscht!";
+				} else {
+
+				}
+			} else {
+			}
+		}
+		return "Wort nicht gefunden";
 	}
 
 	public static String dateiLaden(int a, File file) {
