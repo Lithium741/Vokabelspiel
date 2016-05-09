@@ -63,11 +63,7 @@ public class Start extends JFrame {
 		JButton btnSpiel = new JButton("Spiel 1");// Erster Button
 		btnSpiel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// Spiele1GUI.invoke();
-				for (Vokabel temp : Verwaltung.vokabeln) {
-					System.out.println(temp.getDeutsch());
-				}
-
+				 Vokabelkasten.invoke();
 			}
 		});
 		btnSpiel.setBounds(10, 11, 117, 29);
