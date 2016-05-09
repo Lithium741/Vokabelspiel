@@ -12,7 +12,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Löschen extends JFrame {
+public class Loeschen extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtWortEingeben;
@@ -24,7 +24,7 @@ public class Löschen extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Löschen frame = new Löschen();
+					Loeschen frame = new Loeschen();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,7 +36,7 @@ public class Löschen extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Löschen() {
+	public Loeschen() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 186, 112);
 		contentPane = new JPanel();
