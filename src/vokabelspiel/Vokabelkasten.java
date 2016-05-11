@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -37,42 +38,43 @@ public class Vokabelkasten extends JFrame {
 	 * Create the frame.
 	 */
 	public Vokabelkasten() {
-		try {
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 321, 174);
+		setBounds(100, 100, 308, 270);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		JLabel lblVokabel = new JLabel(Karteikasten.getRandomVokabel());
-		lblVokabel.setBounds(23, 34, 73, 14);
+		lblVokabel.setBounds(23, 34, 253, 14);
 		contentPane.add(lblVokabel);
 
 		JLabel lblKategorie = new JLabel(Verwaltung.vokabeln.get(Karteikasten.getA()).getKategorie());
-		lblKategorie.setBounds(125, 34, 70, 14);
+		lblKategorie.setBounds(23, 83, 229, 14);
 		contentPane.add(lblKategorie);
 
 		JLabel lblFach = new JLabel("Fach: " + Verwaltung.vokabeln.get(Karteikasten.getA()).getFach());
-		lblFach.setBounds(211, 34, 86, 14);
+		lblFach.setBounds(23, 108, 86, 14);
 		contentPane.add(lblFach);
 
 		txtUebersetzung = new JTextField();
 		txtUebersetzung.setText("Uebersetzung");
-		txtUebersetzung.setBounds(10, 81, 86, 20);
+		txtUebersetzung.setBounds(10, 136, 161, 20);
 		contentPane.add(txtUebersetzung);
 		txtUebersetzung.setColumns(10);
 
 		JButton btnUeberpruefungEingabe = new JButton("Ueberpruefung Eingabe");
 		btnUeberpruefungEingabe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, Karteikasten.pruefen(txtUebersetzung));
+				Karteikasten.neuesWort();
+				lblVokabel.setText(Karteikasten.getRandomVokabel());
+				lblKategorie.setText(Verwaltung.vokabeln.get(Karteikasten.getA()).getKategorie());
+				lblFach.setText("Fach: " + Verwaltung.vokabeln.get(Karteikasten.getA()).getFach());
 			}
 		});
-		btnUeberpruefungEingabe.setBounds(106, 80, 168, 23);
+		btnUeberpruefungEingabe.setBounds(10, 176, 168, 23);
 		contentPane.add(btnUeberpruefungEingabe);
-		}catch (IndexOutOfBoundsException e) {
-			
-		}
-		}
+	}
 }

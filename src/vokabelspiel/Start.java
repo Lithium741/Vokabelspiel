@@ -60,14 +60,23 @@ public class Start extends JFrame {
 		tabbedPane.addTab("Spiele", null, Spiele, null);
 		Spiele.setLayout(null);
 
-		JButton btnSpiel = new JButton("Spiel 1");// Erster Button
+		JButton btnSpiel = new JButton("Karteikasten");// Erster Button
 		btnSpiel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 Vokabelkasten.invoke();
+				Vokabelkasten.invoke();
 			}
 		});
 		btnSpiel.setBounds(10, 11, 117, 29);
 		Spiele.add(btnSpiel);// Gelegt in den Panel "Spiele"
+
+		JButton btnSpiel2 = new JButton("Wortfall");
+		btnSpiel2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Wortfall.invoke();
+			}
+		});
+		btnSpiel2.setBounds(10, 71, 117, 29);
+		Spiele.add(btnSpiel2);
 
 		JPanel Verwaltung = new JPanel();
 		tabbedPane.addTab("Verwaltung", null, Verwaltung, null);
