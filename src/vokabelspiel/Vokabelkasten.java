@@ -16,8 +16,6 @@ public class Vokabelkasten extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtUebersetzung;
-	private int a = (int) (Math.random() * (Verwaltung.vokabeln.size()-1));
-	private int b = (int) (Math.random() * 11);
 
 	/**
 	 * Launch the application.
@@ -35,16 +33,6 @@ public class Vokabelkasten extends JFrame {
 		});
 	}
 
-	private String getRandomVokabel() {
-		if ((b % 2) == 1) {
-			return Verwaltung.vokabeln.get(a).getDeutsch();
-		} else if ((b % 2) != 1) {
-			return Verwaltung.vokabeln.get(a).getEnglisch();
-		} else {
-			return "";
-		}
-	}
-
 	/**
 	 * Create the frame.
 	 */
@@ -58,15 +46,15 @@ public class Vokabelkasten extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblVokabel = new JLabel(getRandomVokabel());
+		JLabel lblVokabel = new JLabel(Karteikasten.getRandomVokabel());
 		lblVokabel.setBounds(23, 34, 73, 14);
 		contentPane.add(lblVokabel);
 
-		JLabel lblKategorie = new JLabel(Verwaltung.vokabeln.get(a).getKategorie());
+		JLabel lblKategorie = new JLabel(Verwaltung.vokabeln.get(Karteikasten.getA()).getKategorie());
 		lblKategorie.setBounds(125, 34, 70, 14);
 		contentPane.add(lblKategorie);
 
-		JLabel lblFach = new JLabel("Fach: " + Verwaltung.vokabeln.get(a).getFach());
+		JLabel lblFach = new JLabel("Fach: " + Verwaltung.vokabeln.get(Karteikasten.getA()).getFach());
 		lblFach.setBounds(211, 34, 86, 14);
 		contentPane.add(lblFach);
 
