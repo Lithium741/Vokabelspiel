@@ -24,6 +24,16 @@ public class Vokabel {
 		}
 
 	}
+	
+	public String rndLang(int a) {
+		if ((a % 2) == 0) {
+			return englisch;
+		}else if ((a % 2) != 0){
+			return deutsch;
+		} else {
+			return "";
+		}
+	}
 
 	public String getEnglisch() {
 		return englisch;

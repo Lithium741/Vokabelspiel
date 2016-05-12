@@ -4,9 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JToolBar;
@@ -16,6 +19,8 @@ import javax.swing.JTabbedPane;
 public class Start extends JFrame {
 
 	private JPanel contentPane;
+	private JFileChooser fc;
+	private int a;
 
 	/**
 	 * Launch the application.
@@ -72,6 +77,7 @@ public class Start extends JFrame {
 		JButton btnSpiel2 = new JButton("Wortfall");
 		btnSpiel2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				Spielfeld.newRnd();
 				Wortfall.invoke();
 			}
 		});
@@ -103,7 +109,14 @@ public class Start extends JFrame {
 		JButton btnDateiSpeichern = new JButton("Datei Speichern");
 		btnDateiSpeichern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DateiSpeichern.invoke();
+				fc = new JFileChooser();
+				a = fc.showOpenDialog(null);
+				try {
+					JOptionPane.showMessageDialog(null,
+							vokabelspiel.Verwaltung.dateiSpeichern(a, fc.getSelectedFile()));
+				} catch (NullPointerException f) {
+
+				}
 			}
 		});
 		btnDateiSpeichern.setBounds(10, 134, 133, 29);
@@ -112,7 +125,23 @@ public class Start extends JFrame {
 		JButton btnDateiLaden = new JButton("Datei Laden");
 		btnDateiLaden.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				DateiLaden.invoke();
+				fc = new JFileChooser();
+				a = fc.showOpenDialog(null);
+				int b = JOptionPane.showOptionDialog(null, "Alte Liste überschreiben?", "Datei laden",
+						JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, new String[] { "Ja", "Nein" },
+						"Nein");
+				try {
+					if (b == 0) {
+						vokabelspiel.Verwaltung.vokabeln.clear();
+						JOptionPane.showMessageDialog(null,
+								vokabelspiel.Verwaltung.dateiLaden(a, fc.getSelectedFile()));
+					} else {
+						JOptionPane.showMessageDialog(null,
+								vokabelspiel.Verwaltung.dateiLaden(a, fc.getSelectedFile()));
+					}
+				} catch (NullPointerException e) {
+
+				}
 			}
 		});
 		btnDateiLaden.setBounds(10, 188, 133, 29);

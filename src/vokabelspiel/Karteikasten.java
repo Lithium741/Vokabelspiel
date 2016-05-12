@@ -8,14 +8,14 @@ public class Karteikasten {
 	private static int b = (int) (Math.random() * 11);
 
 	public static String getRandomVokabel() {
-		if ((b % 2) == 1) {
+		if ((b % 2) == 0) {
 			// stellt sicher, dass das Wort nicht im dritten Fach ist.
 			if (Verwaltung.vokabeln.get(a).getFach() > 3) {
 				a = (int) (Math.random() * (Verwaltung.vokabeln.size() - 1));
 				return getRandomVokabel();
 			}
 			return Verwaltung.vokabeln.get(a).getDeutsch();
-		} else if ((b % 2) != 1) {
+		} else if ((b % 2) != 0) {
 			if (Verwaltung.vokabeln.get(a).getFach() > 3) {
 				a = (int) (Math.random() * (Verwaltung.vokabeln.size() - 1));
 				return getRandomVokabel();
@@ -27,7 +27,7 @@ public class Karteikasten {
 	}
 
 	public static String pruefen(JTextField wort) {
-		if ((b % 2) == 1) {
+		if ((b % 2) == 0) {
 			if (wort.getText().equals(Verwaltung.vokabeln.get(a).getEnglisch())) {
 				Verwaltung.vokabeln.get(a).sprung();
 				return "Richtig!" + "\n" + Verwaltung.vokabeln.get(a).getDeutsch() + " = "
@@ -36,7 +36,7 @@ public class Karteikasten {
 				return "Falsch" + "\n" + Verwaltung.vokabeln.get(a).getDeutsch() + " = "
 						+ Verwaltung.vokabeln.get(a).getEnglisch();
 			}
-		} else if ((b % 2) != 1) {
+		} else if ((b % 2) != 0) {
 			if (wort.getText().equals(Verwaltung.vokabeln.get(a).getDeutsch())) {
 				Verwaltung.vokabeln.get(a).sprung();
 				return "Richtig!" + "\n" + Verwaltung.vokabeln.get(a).getDeutsch() + " = "
