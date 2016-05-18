@@ -77,8 +77,7 @@ public class Start extends JFrame {
 		JButton btnSpiel2 = new JButton("Wortfall");
 		btnSpiel2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Spielfeld.newRnd();
-				Wortfall.invoke();
+
 			}
 		});
 		btnSpiel2.setBounds(10, 71, 117, 29);

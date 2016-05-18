@@ -2,38 +2,30 @@ package vokabelspiel;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
-
 import javax.swing.JPanel;
 
-public class Wort extends JPanel{
+@SuppressWarnings("serial")
+public class Wort extends JPanel {
 	private static final int WIDTH = 200;
 	private static final int HEIGHT = 15;
-	private int y = 30;
+	private int y;
 	private int x;
 	private String wort;
 
-	public Wort(int x, String wort) {
-		this.x = x;
-		this.wort = wort;
+	public Wort() {
 	}
 
-	public void move() {
-		y += 2;
-		if (y >= 500) {
-			y = 30;
-		}
-	}
-
-	public void paint(Graphics2D g, String wort) {
+	/**
+	 * Paint methode: zeichnet ein Wort
+	 */
+	public void paint(Graphics2D g) {
 		g.setColor(Color.BLACK);
 		g.drawString(wort, x, y);
 	}
-	
-	public Rectangle getBounds(int x) {
-		return new Rectangle(x, y - 20, WIDTH, HEIGHT);
-	}
 
+	/**
+	 * Getter und Setter
+	 */
 	public int getY() {
 		return y;
 	}
