@@ -6,13 +6,14 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextArea;
 import java.awt.Font;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import javax.swing.UIManager;
 
+
 @SuppressWarnings("serial")
-public class Spielfeld extends JFrame {
+public class WortfallView extends JFrame {
 
 	private JPanel contentPane;
 	private Wort wort1;
@@ -24,11 +25,11 @@ public class Spielfeld extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public void invoke() {
+	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Spielfeld frame = new Spielfeld();
+					WortfallView frame = new WortfallView();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,24 +38,21 @@ public class Spielfeld extends JFrame {
 		});
 	}
 
+	public void paint(Graphics g) {
+		super.paint(g);
+		Graphics2D g2d = (Graphics2D) g;
+		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		wort1.paint(g2d);
+		wort2.paint(g2d);
+		wort3.paint(g2d);
+		wort4.paint(g2d);
+		balken.paint(g2d);
+	}
+
 	/**
 	 * Create the frame.
 	 */
-	public Spielfeld() {
-		addKeyListener(new KeyListener() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-			}
-
-			@Override
-			public void keyReleased(KeyEvent e) {
-			}
-
-			@Override
-			public void keyPressed(KeyEvent e) {
-			}
-		});
-		
+	public WortfallView() {
 		setFocusable(true);
 		setBounds(100, 100, 836, 500);
 		contentPane = new JPanel();
@@ -79,25 +77,62 @@ public class Spielfeld extends JFrame {
 		contentPane.add(txtrScore);
 
 		wort1 = new Wort();
-		wort1.setLocation(10, 33);
 		wort1.setWort("wort1");
 		contentPane.add(wort1);
 
 		wort2 = new Wort();
-		wort2.setLocation(211, 33);
 		wort2.setWort("wort2");
 		contentPane.add(wort2);
 
 		wort3 = new Wort();
-		wort3.setLocation(412, 33);
 		wort3.setWort("wort3");
 		contentPane.add(wort3);
 
 		wort4 = new Wort();
-		wort4.setLocation(613, 33);
 		wort4.setWort("wort4");
 		contentPane.add(wort4);
 
+		balken = new Balken();
+		contentPane.add(balken);
 	}
 
+	public Wort getWort1() {
+		return wort1;
+	}
+
+	public void setWort1(Wort wort1) {
+		this.wort1 = wort1;
+	}
+
+	public Wort getWort2() {
+		return wort2;
+	}
+
+	public void setWort2(Wort wort2) {
+		this.wort2 = wort2;
+	}
+
+	public Wort getWort3() {
+		return wort3;
+	}
+
+	public void setWort3(Wort wort3) {
+		this.wort3 = wort3;
+	}
+
+	public Wort getWort4() {
+		return wort4;
+	}
+
+	public void setWort4(Wort wort4) {
+		this.wort4 = wort4;
+	}
+
+	public Balken getBalken() {
+		return balken;
+	}
+
+	public void setBalken(Balken balken) {
+		this.balken = balken;
+	}
 }
