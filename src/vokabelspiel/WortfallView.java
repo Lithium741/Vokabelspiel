@@ -77,23 +77,33 @@ public class WortfallView extends JFrame {
 		contentPane.add(txtrScore);
 
 		wort1 = new Wort();
+		wort1.setSize(200, 15);
+		wort1.setLocation(5, 40);
 		wort1.setWort("wort1");
 		contentPane.add(wort1);
 
 		wort2 = new Wort();
+		wort2.setSize(200, 15);
+		wort2.setLocation(206, 40);
 		wort2.setWort("wort2");
 		contentPane.add(wort2);
 
 		wort3 = new Wort();
+		wort3.setSize(200, 15);
+		wort3.setLocation(407, 40);
 		wort3.setWort("wort3");
 		contentPane.add(wort3);
 
 		wort4 = new Wort();
+		wort4.setSize(200, 15);
+		wort4.setLocation(608, 40);
 		wort4.setWort("wort4");
 		contentPane.add(wort4);
 
 		balken = new Balken();
 		contentPane.add(balken);
+		
+		
 	}
 
 	public Wort getWort1() {

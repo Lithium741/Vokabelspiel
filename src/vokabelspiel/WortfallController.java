@@ -13,18 +13,15 @@ public class WortfallController {
 	Timer timer;
 
 	public void move() {
-		wView.getWort1().setY(WortfallModel.moveWort(wView.getWort1().getY()));
-		wView.getWort2().setY(WortfallModel.moveWort(wView.getWort2().getY()));
-		wView.getWort3().setY(WortfallModel.moveWort(wView.getWort3().getY()));
-		wView.getWort4().setY(WortfallModel.moveWort(wView.getWort4().getY()));
-		wView.getBalken()
-				.setX(WortfallModel.moveBalken(wView.getWidth(), wView.getBalken().getX(), wView.getBalken().getXa()));
+		WortfallModel.move(wView.getWort1());
+		WortfallModel.move(wView.getWort2());
+		WortfallModel.move(wView.getWort3());
+		WortfallModel.move(wView.getWort4());
+		WortfallModel.move(wView.getWidth(), wView.getBalken());
 	}
 
-	public WortfallController() {
-
-		wView = new WortfallView();
-
+	public WortfallController(WortfallView wView) {
+		this.wView = wView;
 		wView.addKeyListener(new KeyListener() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -32,29 +29,27 @@ public class WortfallController {
 
 			@Override
 			public void keyReleased(KeyEvent e) {
-				wView.getBalken().setXa(WortfallModel.balkenKeyReleased(e));
+				WortfallModel.balkenKeyReleased(e, wView.getBalken());
 			}
 
 			@Override
 			public void keyPressed(KeyEvent e) {
-				wView.getBalken().setXa(WortfallModel.balkenKeyPressed(e));
+				WortfallModel.balkenKeyPressed(e, wView.getBalken());
 			}
 		});
 
 		ActionListener taskPerformer = new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				// ...Perform a task...
-				// System.out.println("timer");
 				try {
-					wView.repaint();
 					move();
+					wView.repaint();
 				} catch (Exception e) {
 					System.out.println("Thread");
 				}
 			}
 		};
 
-		timer = new Timer(10, taskPerformer);
+		timer = new Timer(3, taskPerformer);
 		timer.setInitialDelay(10);
 
 		timer.start();

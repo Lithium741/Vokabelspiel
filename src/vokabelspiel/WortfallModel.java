@@ -5,22 +5,24 @@ import java.awt.event.KeyEvent;
 
 public class WortfallModel {
 
-	public static int moveWort(int y) {
+	public static void move(Wort wort) {
+		int y = wort.getY();
 		y += 2;
 		if (y >= 500) {
 			y = 30;
 		}
-		return y;
+		wort.setY(y);
 	}
 	
-	public static int moveBalken(int a, int x, int xa) {
+	public static void move(int a, Balken balken) {
+		int x = balken.getX();
+		int xa = balken.getXa();
 		if (x + xa > 0 && x + xa < a - 60) {
-			x += xa;
+			balken.setX(balken.getX() + xa);
 		}
-		return x;
 	}
 	
-	public static int balkenKeyPressed(KeyEvent e) {
+	public static void balkenKeyPressed(KeyEvent e, Balken balken) {
 		int xa = 0;
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			xa = -6;
@@ -28,12 +30,12 @@ public class WortfallModel {
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			xa = 6;
 		}
-		return xa;
+		balken.setXa(xa);
 	}
 	
-	public static int balkenKeyReleased(KeyEvent e) {
+	public static void balkenKeyReleased(KeyEvent e, Balken balken) {
 		int xa = 0;
-		return xa;
+		balken.setXa(xa);
 	}
 	
 	public static Rectangle getBounds(int x, int y, int WIDTH, int HEIGHT) {
