@@ -14,6 +14,13 @@ import javax.swing.JTextField;
 public class Verwaltung {
 
 	public static ArrayList<Vokabel> vokabeln = new ArrayList<Vokabel>();
+	
+	public static String setEnglisch() {
+		for (Vokabel temp : vokabeln) {
+			return temp.getEnglisch() + "\n";
+		}
+		return "";
+	}
 
 	// speichern/hinzufügen einer neuen Vokabel
 	public static String speichern(JTextField wortA, JTextField wortB, String a, int b) {

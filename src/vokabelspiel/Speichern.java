@@ -114,12 +114,18 @@ public class Speichern extends JFrame {
 							new String[] { "Ja", "Nein" }, "Nein");
 					JOptionPane.showMessageDialog(null,
 							Verwaltung.speichern(txtEnglischesWort, txtDeutschesWort, a, b));
-					// wenn kein Knopf ausgewählt wurde PopUp Femster mit
+					// wenn kein Knopf ausgewählt wurde PopUp Fenster mit
 					// Fehlermeldung
 				} else if (rdbtnAlltag.isSelected() == false && rdbtnNatur.isSelected() == false
 						&& rdbtnFahrzeuge.isSelected() == false && rdbtnLebensmittel.isSelected() == false
 						&& rdbtnFachbegriffe.isSelected() == false) {
 					JOptionPane.showMessageDialog(null, "Wählen Sie eine Kategorie aus!");
+				}
+					Start.list.removeAll();
+					Start.list_1.removeAll();
+				for (Vokabel temp : Verwaltung.vokabeln) {
+					Start.list.add(temp.getEnglisch());
+					Start.list_1.add(temp.getDeutsch());
 				}
 			}
 		});

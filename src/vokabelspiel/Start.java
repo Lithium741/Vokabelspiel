@@ -15,12 +15,16 @@ import java.awt.event.ActionEvent;
 import javax.swing.JToolBar;
 import javax.swing.BoxLayout;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
+import java.awt.List;
 
 public class Start extends JFrame {
 
 	private JPanel contentPane;
 	private JFileChooser fc;
 	private int a;
+	public static List list;
+	public static List list_1;
 
 	/**
 	 * Launch the application.
@@ -45,7 +49,7 @@ public class Start extends JFrame {
 	 */
 	public Start() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 473, 324);
+		setBounds(100, 100, 638, 486);
 		// erstellen Panel,auf den später die Elemente gezogen werden (Fenster
 		// im Fenster)
 		contentPane = new JPanel();
@@ -146,5 +150,13 @@ public class Start extends JFrame {
 		});
 		btnDateiLaden.setBounds(10, 188, 133, 29);
 		Verwaltung.add(btnDateiLaden);
+		
+		list = new List();
+		list.setBounds(149, 28, 225, 371);
+		Verwaltung.add(list);
+		
+		list_1 = new List();
+		list_1.setBounds(380, 28, 225, 371);
+		Verwaltung.add(list_1);
 	}
 }
