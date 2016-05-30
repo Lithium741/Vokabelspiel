@@ -1,5 +1,11 @@
 package vokabelspiel;
 
+/**
+ * Vokabel-Klasse Abstrakter Datentyp
+ * 
+ * @author Manuel S., Mareen B., Alex B., Kevin K.
+ *
+ */
 public class Vokabel {
 
 	private String englisch;
@@ -8,12 +14,22 @@ public class Vokabel {
 	private int fach = 0;
 	private int zaehler = 0;
 
+	/**
+	 * Konstruktor
+	 * 
+	 * @param englisch
+	 * @param deutsch
+	 * @param kategorie
+	 */
 	public Vokabel(String englisch, String deutsch, String kategorie) {
 		this.englisch = englisch;
 		this.deutsch = deutsch;
 		this.kategorie = kategorie;
 	}
 
+	/**
+	 * sprung-Methode, lässt ein Objekt "durch die Fächer springen"
+	 */
 	public void sprung() {
 		if (zaehler == 3) {
 			fach = 4;
@@ -24,17 +40,26 @@ public class Vokabel {
 		}
 
 	}
-	
+
+	/**
+	 * gibt entweder das englische oder das deutsche Wort
+	 * 
+	 * @param a
+	 * @return
+	 */
 	public String rndLang(int a) {
 		if ((a % 2) == 0) {
 			return englisch;
-		}else if ((a % 2) != 0){
+		} else if ((a % 2) != 0) {
 			return deutsch;
 		} else {
 			return "";
 		}
 	}
 
+	/**
+	 * getter und setter
+	 */
 	public String getEnglisch() {
 		return englisch;
 	}

@@ -13,13 +13,19 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * Vokabelkasten-Klasse
+ * GUI-Teil des karteikasten-Spiels
+ * @author Manuel S., Mareen B., Alex B., Kevin K.
+ *
+ */
 public class Vokabelkasten extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtUebersetzung;
 
 	/**
-	 * Launch the application.
+	 * Startet das Fenster
 	 */
 	public static void invoke() {
 		EventQueue.invokeLater(new Runnable() {
@@ -35,7 +41,7 @@ public class Vokabelkasten extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Kreiert das fenster
 	 */
 	public Vokabelkasten() {
 
@@ -64,6 +70,10 @@ public class Vokabelkasten extends JFrame {
 		contentPane.add(txtUebersetzung);
 		txtUebersetzung.setColumns(10);
 
+		/*
+		 * ruft die prüfen-methode aus der Karteikasten-Klasse auf und füllt
+		 * dann die Textfelder mit neuen zufälligen Vokabeln
+		 */
 		JButton btnUeberpruefungEingabe = new JButton("Ueberpruefung Eingabe");
 		btnUeberpruefungEingabe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

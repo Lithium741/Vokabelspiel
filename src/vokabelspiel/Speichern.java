@@ -14,6 +14,13 @@ import javax.swing.JRadioButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * Speichern-Klasse Erstellt das Fenster und regelt den Ablauf der
+ * Speichern-Funktion des Programms
+ * 
+ * @author Manuel S., Mareen B., Alex B., Kevin K.
+ *
+ */
 public class Speichern extends JFrame {
 
 	private JPanel contentPane;
@@ -23,7 +30,7 @@ public class Speichern extends JFrame {
 	private int b = 0;
 
 	/**
-	 * Launch the application.
+	 * startet das Fenster
 	 */
 	public static void invoke() {
 		EventQueue.invokeLater(new Runnable() {
@@ -39,7 +46,7 @@ public class Speichern extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Kreiert das Fenster
 	 */
 	public Speichern() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -81,14 +88,18 @@ public class Speichern extends JFrame {
 		rdbtnFachbegriffe.setBounds(150, 130, 109, 23);
 		contentPane.add(rdbtnFachbegriffe);
 
-		ButtonGroup group = new ButtonGroup(); // Auswählen nur einer Kategorie
-												// möglich
+		/* Gruppiert die radiobuttnos, damit nur einer ausgewählt werden kann */
+		ButtonGroup group = new ButtonGroup();
 		group.add(rdbtnAlltag);
 		group.add(rdbtnNatur);
 		group.add(rdbtnFahrzeuge);
 		group.add(rdbtnLebensmittel);
 		group.add(rdbtnFachbegriffe);
 
+		/*
+		 * Speichert die Eingaben in einer neues Vokabel (neues Vokabel-Objekt
+		 * in der Arraylist)
+		 */
 		JButton btnSpeichern = new JButton("Speichern");
 		btnSpeichern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -102,9 +113,11 @@ public class Speichern extends JFrame {
 					a = "Lebensmittel";
 				} else if (rdbtnFachbegriffe.isSelected()) {
 					a = "Fachbegriffe";
-					// wenn einer der Knöpfe ausgewählt wurde --> normal im
-					// Programm weitergehen
 				}
+
+				/*
+				 * Prüft, ob ein radiobutton ausgewählt wurde
+				 */
 				if (rdbtnAlltag.isSelected() == true || rdbtnNatur.isSelected() == true
 						|| rdbtnFahrzeuge.isSelected() == true || rdbtnLebensmittel.isSelected() == true
 						|| rdbtnFachbegriffe.isSelected() == true) {
@@ -114,15 +127,17 @@ public class Speichern extends JFrame {
 							new String[] { "Ja", "Nein" }, "Nein");
 					JOptionPane.showMessageDialog(null,
 							Verwaltung.speichern(txtEnglischesWort, txtDeutschesWort, a, b));
-					// wenn kein Knopf ausgewählt wurde PopUp Fenster mit
-					// Fehlermeldung
+
+					/* Fehlermeldung, wenn kein Radiobutton ausgewählt wurde */
 				} else if (rdbtnAlltag.isSelected() == false && rdbtnNatur.isSelected() == false
 						&& rdbtnFahrzeuge.isSelected() == false && rdbtnLebensmittel.isSelected() == false
 						&& rdbtnFachbegriffe.isSelected() == false) {
 					JOptionPane.showMessageDialog(null, "Wählen Sie eine Kategorie aus!");
 				}
-					Start.list.removeAll();
-					Start.list_1.removeAll();
+
+				/* aktualisiert die Listen */
+				Start.list.removeAll();
+				Start.list_1.removeAll();
 				for (Vokabel temp : Verwaltung.vokabeln) {
 					Start.list.add(temp.getEnglisch());
 					Start.list_1.add(temp.getDeutsch());
@@ -133,6 +148,9 @@ public class Speichern extends JFrame {
 		contentPane.add(btnSpeichern);
 	}
 
+	/**
+	 * getter und setter
+	 */
 	public JTextField getTxtDeutschesWort() {
 		return txtDeutschesWort;
 	}
