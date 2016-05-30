@@ -11,6 +11,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * Spielfeld-Klasse
+ * regelt den Ablauf des Spiels
+ * 
+ * @author Manuel S., Mareen B., Alex B., Kevin K.
+ *
+ */
 public class Spielfeld extends JPanel {
 	Wortfall wFall;
 	private int y = 0;
@@ -27,19 +34,22 @@ public class Spielfeld extends JPanel {
 	private Wort wort2;
 	private Wort wort3;
 	private Wort wort4;
-	private Balken balken = new Balken(this);
+	private Balken balken = new Balken();
 	private static int e = rand.nextInt(4) + 1;
 
+	/**
+	 * generiert eine neue Zufallszahl
+	 */
 	public static void setRand() {
 
 		e = rand.nextInt(4) + 1;
 	}
 
-	public static int getRand() {
-
-		return e;
-	}
-
+	/**
+	 * Konstruktor
+	 * 
+	 * @param wFall
+	 */
 	public Spielfeld(Wortfall wFall) {
 		this.wFall = wFall;
 		try {
@@ -51,6 +61,7 @@ public class Spielfeld extends JPanel {
 		} catch (IndexOutOfBoundsException e) {
 
 		}
+		/* keyListener der die Tastendrücke abfängt */
 		addKeyListener(new KeyListener() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -58,7 +69,6 @@ public class Spielfeld extends JPanel {
 
 			@Override
 			public void keyReleased(KeyEvent e) {
-				balken.keyReleased(e);
 			}
 
 			@Override
@@ -69,6 +79,9 @@ public class Spielfeld extends JPanel {
 		setFocusable(true);
 	}
 
+	/**
+	 * generiert neue Zufallszahlen
+	 */
 	public static void newRnd() {
 		a = (int) (Math.random() * (Verwaltung.vokabeln.size() - 1));
 		b = (int) (Math.random() * (Verwaltung.vokabeln.size() - 1));
@@ -77,20 +90,26 @@ public class Spielfeld extends JPanel {
 		z = (int) (Math.random() * 11);
 	}
 
+	/**
+	 * bewegt die Wörter auf dem Spielfeld und regelt die Kollisionsabfrage
+	 */
 	public void move() {
 		wort1.move();
 		wort2.move();
 		wort3.move();
-		if (wort4.move()) {
-
-			setRand();
-		}
-		balken.move();
+		wort4.move();
 		if (wort1.getY() >= 480) {
+			/*
+			 * erhöht den Score bei richtiger Wahl und aktualisiert das Textfeld
+			 */
 			if (balken.getColumn() == Wortfall.getColumn()) {
 				score++;
 				wFall.getTxtrScore().setText("Score: " + score);
 				reset();
+			/*
+			 * verringert das Leben bei falscher Auswahl und aktualisiert
+			 * die Progressbar
+			 */
 			} else {
 				life -= 2;
 				wFall.getProgressBar().setValue(life);
@@ -99,6 +118,10 @@ public class Spielfeld extends JPanel {
 		}
 	}
 
+	/**
+	 * setzt die Position der Wörter zurück und ruft newRnd() auf, um neue
+	 * Wörter zu bekommen
+	 */
 	public void reset() {
 		wort1.setY(30);
 		wort2.setY(30);
@@ -107,6 +130,34 @@ public class Spielfeld extends JPanel {
 		newRnd();
 	}
 
+	/**
+	 * gibt zufällige Wörter aus der Arraylist in Verwaltung und weist diesen
+	 * eine Spalte (column) zu
+	 * 
+	 * @param a
+	 * @return String
+	 */
+	public static String getWort(int a) {
+		switch (a) {
+		case 1:
+			Wortfall.setColumn(1);
+			return Verwaltung.vokabeln.get(a).rndLang(z - 1);
+		case 2:
+			Wortfall.setColumn(2);
+			return Verwaltung.vokabeln.get(b).rndLang(z - 1);
+		case 3:
+			Wortfall.setColumn(3);
+			return Verwaltung.vokabeln.get(c).rndLang(z - 1);
+		case 4:
+			Wortfall.setColumn(4);
+			return Verwaltung.vokabeln.get(d).rndLang(z - 1);
+		}
+		return "";
+	}
+	
+	/**
+	 * Zeichnet das Panel sowie die Wörter und den Balken
+	 */
 	public void paint(Graphics g) {
 		super.paint(g);
 		Graphics2D g2d = (Graphics2D) g;
@@ -122,6 +173,9 @@ public class Spielfeld extends JPanel {
 		balken.paint(g2d);
 	}
 
+	/**
+	 * getter und setter
+	 */
 	public int getScore() {
 		return score;
 	}
@@ -236,5 +290,10 @@ public class Spielfeld extends JPanel {
 
 	public void setBalken(Balken balken) {
 		this.balken = balken;
+	}
+
+	public static int getRand() {
+
+		return e;
 	}
 }

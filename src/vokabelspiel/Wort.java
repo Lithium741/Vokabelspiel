@@ -4,6 +4,13 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
+/**
+ * Wort-Klasse
+ * Wörter, die aufgefangen werden müssen
+ * 
+ * @author Manuel S., Mareen B., Alex B., Kevin K.
+ *
+ */
 public class Wort {
 	private static final int WIDTH = 200;
 	private static final int HEIGHT = 15;
@@ -12,41 +19,40 @@ public class Wort {
 	private Spielfeld feld;
 	private String wort;
 
+	/**
+	 * Konstruktor
+	 * 
+	 * @param feld
+	 * @param x
+	 * @param wort
+	 */
 	public Wort(Spielfeld feld, int x, String wort) {
 		this.feld = feld;
 		this.x = x;
 		this.wort = wort;
 	}
 
-	public boolean move() {
+	/**
+	 * bewegt das Wort abwärts
+	 */
+	public void move() {
 		y += 2;
-		if (collision()) {
-			if (this.wort.equals(Wortfall.getTxtrWort().getText())) {
-				feld.reset();
-			}
-
-		}
-		if (y >= 560) {
-			y = 30;
-			Spielfeld.newRnd();
-			return true;
-		}
-		return false;
 	}
 
+	/**
+	 * Zeichnet das wort
+	 * 
+	 * @param g
+	 * @param wort
+	 */
 	public void paint(Graphics2D g, String wort) {
 		g.setColor(Color.BLACK);
 		g.drawString(wort, x, y);
 	}
 
-	public boolean collision() {
-		return getBounds(x).intersects(feld.getBalken().getBounds());
-	}
-
-	public Rectangle getBounds(int x) {
-		return new Rectangle(x, y - 20, WIDTH, HEIGHT);
-	}
-
+	/**
+	 * getter und setter
+	 */
 	public int getY() {
 		return y;
 	}

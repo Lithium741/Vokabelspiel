@@ -18,6 +18,13 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JProgressBar;
 
+/**
+ * Wortfall-Klasse 
+ * regelt die GUI-Anteile des Spiels
+ * 
+ * @author Manuel S., Mareen B., Alex B., Kevin K.
+ *
+ */
 public class Wortfall extends JFrame {
 	private JPanel contentPane;
 	private static Timer timer;
@@ -27,6 +34,9 @@ public class Wortfall extends JFrame {
 	private static JProgressBar progressBar;
 	private static int column;
 
+	/**
+	 * startet das Fenster
+	 */
 	public static void invoke() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -40,6 +50,9 @@ public class Wortfall extends JFrame {
 		});
 	}
 
+	/**
+	 * Konstruktor, in dem das Fenster gezeichnet und gefüllt wird
+	 */
 	public Wortfall() {
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -48,12 +61,16 @@ public class Wortfall extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		int delay = 10;
+		/*
+		 * taskPerformer, der zum eigentlichen Ablauf des Spiels aufgerufen wird
+		 */
 		ActionListener taskPerformer = new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				try {
 					feld.move();
-					txtrWort.setText(getWort(feld.getRand()));
+					txtrWort.setText(Spielfeld.getWort(Spielfeld.getRand()));
 					feld.repaint();
+					/* beendet das Spiel bei Verlust des ganzen Lebens */
 					if (feld.getLife() == 0) {
 						JOptionPane.showMessageDialog(null, "Verloren");
 						dispose();
@@ -82,7 +99,7 @@ public class Wortfall extends JFrame {
 		feld.add(txtrWort);
 		txtrWort.setForeground(Color.BLACK);
 		txtrWort.setFont(new Font("Impact", Font.PLAIN, 18));
-		txtrWort.setText(getWort(feld.getRand()));
+		txtrWort.setText(Spielfeld.getWort(Spielfeld.getRand()));
 
 		txtrScore = new JTextArea();
 		txtrScore.setBackground(new Color(240, 240, 240));
@@ -103,30 +120,16 @@ public class Wortfall extends JFrame {
 		progressBar.setBounds(543, 11, 221, 22);
 		feld.add(progressBar);
 
+		/* Timer, der in periodischen Abständen den taskPerformer aufruft */
 		timer = new Timer(delay, taskPerformer);
 		timer.setInitialDelay(delay);
 		timer.start();
 
 	}
 
-	public String getWort(int a) {
-		switch (a) {
-		case 1:
-			column = 1;
-			return Verwaltung.vokabeln.get(feld.getA()).rndLang(feld.getZ() - 1);
-		case 2:
-			column = 2;
-			return Verwaltung.vokabeln.get(feld.getB()).rndLang(feld.getZ() - 1);
-		case 3:
-			column = 3;
-			return Verwaltung.vokabeln.get(feld.getC()).rndLang(feld.getZ() - 1);
-		case 4:
-			column = 4;
-			return Verwaltung.vokabeln.get(feld.getD()).rndLang(feld.getZ() - 1);
-		}
-		return "";
-	}
-
+	/**
+	 * getter und setter
+	 */
 	public static Timer getTimer() {
 		return timer;
 	}

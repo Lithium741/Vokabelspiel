@@ -6,6 +6,7 @@ import javax.swing.JTextField;
 /**
  * Karteikasten-Klasse 
  * Funktioneller Teil des Karteikasten-Spiels
+ * 
  * @author Manuel S., Mareen B., Alex B., Kevin K.
  *
  */
