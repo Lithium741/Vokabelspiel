@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Spielfeld extends JPanel {
+	Wortfall wFall;
 	private int y = 0;
 	private int x = 5;
 	private static int score = 0;
@@ -39,14 +40,14 @@ public class Spielfeld extends JPanel {
 		return e;
 	}
 
-	public Spielfeld() {
+	public Spielfeld(Wortfall wFall) {
+		this.wFall = wFall;
 		try {
 
-			// Gamplay.setWords();
-			wort1 = new Wort(this, 5, Verwaltung.vokabeln.get(a).rndLang(z));
-			wort2 = new Wort(this, 205, Verwaltung.vokabeln.get(b).rndLang(z));
-			wort3 = new Wort(this, 405, Verwaltung.vokabeln.get(c).rndLang(z));
-			wort4 = new Wort(this, 605, Verwaltung.vokabeln.get(d).rndLang(z));
+			wort1 = new Wort(this, 10, Verwaltung.vokabeln.get(a).rndLang(z));
+			wort2 = new Wort(this, 211, Verwaltung.vokabeln.get(b).rndLang(z));
+			wort3 = new Wort(this, 412, Verwaltung.vokabeln.get(c).rndLang(z));
+			wort4 = new Wort(this, 613, Verwaltung.vokabeln.get(d).rndLang(z));
 		} catch (IndexOutOfBoundsException e) {
 
 		}
@@ -85,7 +86,17 @@ public class Spielfeld extends JPanel {
 			setRand();
 		}
 		balken.move();
-
+		if (wort1.getY() >= 480) {
+			if (balken.getColumn() == Wortfall.getColumn()) {
+				score++;
+				wFall.getTxtrScore().setText("Score: " + score);
+				reset();
+			} else {
+				life -= 2;
+				wFall.getProgressBar().setValue(life);
+				reset();
+			}
+		}
 	}
 
 	public void reset() {

@@ -11,10 +11,12 @@ import javax.swing.Timer;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
+import javax.swing.JProgressBar;
 
 public class Wortfall extends JFrame {
 	private JPanel contentPane;
@@ -22,8 +24,8 @@ public class Wortfall extends JFrame {
 	private Spielfeld feld;
 	private static JTextArea txtrScore;
 	private static JTextArea txtrWort;
-	
-	
+	private static JProgressBar progressBar;
+	private static int column;
 
 	public static void invoke() {
 		EventQueue.invokeLater(new Runnable() {
@@ -52,6 +54,11 @@ public class Wortfall extends JFrame {
 					feld.move();
 					txtrWort.setText(getWort(feld.getRand()));
 					feld.repaint();
+					if (feld.getLife() == 0) {
+						JOptionPane.showMessageDialog(null, "Verloren");
+						dispose();
+						feld.setLife(20);
+					}
 				} catch (Exception e) {
 					System.out.println("Thread");
 				}
@@ -63,14 +70,14 @@ public class Wortfall extends JFrame {
 		panel.setBounds(5, 5, 774, 522);
 		contentPane.add(panel);
 		panel.setLayout(null);
-		feld = new Spielfeld();
-		feld.setBackground(Color.LIGHT_GRAY);
+		feld = new Spielfeld(this);
+		feld.setBackground(new Color(240, 240, 240));
 		feld.setBounds(0, 0, 774, 522);
 		panel.add(feld);
 		feld.setLayout(null);
 
 		txtrWort = new JTextArea();
-		txtrWort.setBackground(Color.LIGHT_GRAY);
+		txtrWort.setBackground(new Color(240, 240, 240));
 		txtrWort.setBounds(10, 11, 232, 30);
 		feld.add(txtrWort);
 		txtrWort.setForeground(Color.BLACK);
@@ -78,12 +85,23 @@ public class Wortfall extends JFrame {
 		txtrWort.setText(getWort(feld.getRand()));
 
 		txtrScore = new JTextArea();
-		txtrScore.setBackground(Color.LIGHT_GRAY);
+		txtrScore.setBackground(new Color(240, 240, 240));
 		txtrScore.setBounds(257, 11, 216, 38);
 		feld.add(txtrScore);
 		txtrScore.setForeground(Color.BLACK);
 		txtrScore.setFont(new Font("Impact", Font.PLAIN, 18));
 		txtrScore.setText("Score: " + feld.getScore());
+
+		JTextArea textArea = new JTextArea();
+		textArea.setBounds(0, 0, 4, 22);
+		feld.add(textArea);
+
+		progressBar = new JProgressBar(0, 20);
+		progressBar.setValue(feld.getLife());
+		progressBar.setForeground(Color.GREEN);
+		progressBar.setBackground(Color.RED);
+		progressBar.setBounds(543, 11, 221, 22);
+		feld.add(progressBar);
 
 		timer = new Timer(delay, taskPerformer);
 		timer.setInitialDelay(delay);
@@ -94,12 +112,16 @@ public class Wortfall extends JFrame {
 	public String getWort(int a) {
 		switch (a) {
 		case 1:
+			column = 1;
 			return Verwaltung.vokabeln.get(feld.getA()).rndLang(feld.getZ() - 1);
 		case 2:
+			column = 2;
 			return Verwaltung.vokabeln.get(feld.getB()).rndLang(feld.getZ() - 1);
 		case 3:
+			column = 3;
 			return Verwaltung.vokabeln.get(feld.getC()).rndLang(feld.getZ() - 1);
 		case 4:
+			column = 4;
 			return Verwaltung.vokabeln.get(feld.getD()).rndLang(feld.getZ() - 1);
 		}
 		return "";
@@ -127,5 +149,21 @@ public class Wortfall extends JFrame {
 
 	public void setTxtrWort(JTextArea txtrWort) {
 		this.txtrWort = txtrWort;
+	}
+
+	public static JProgressBar getProgressBar() {
+		return progressBar;
+	}
+
+	public static void setProgressBar(JProgressBar progressBar) {
+		Wortfall.progressBar = progressBar;
+	}
+
+	public static int getColumn() {
+		return column;
+	}
+
+	public static void setColumn(int column) {
+		Wortfall.column = column;
 	}
 }

@@ -9,7 +9,8 @@ public class Balken {
 	private static final int Y = 480;
 	private static final int WIDTH = 45;
 	private static final int HEIGHT = 10;
-	private int x = 0;
+	private int column = 1;
+	private int x = 10;
 	private int xa = 0;
 	private Spielfeld feld;
 
@@ -28,20 +29,40 @@ public class Balken {
 		g.fillRect(x, Y, WIDTH, HEIGHT);
 	}
 
+	public void keyReleased() {
+		xa = 0;
+	}
+
 	public void keyReleased(KeyEvent e) {
 		xa = 0;
 	}
 
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			xa = -6;
+			if (x > 10) {
+				x -= 201;
+				column--;
+			} else {
+			}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			xa = 6;
+			if (x < 613) {
+				x += 201;
+				column++;
+			} else {
+			}
 		}
 	}
 
 	public Rectangle getBounds() {
 		return new Rectangle(x, Y, WIDTH, HEIGHT);
+	}
+
+	public int getColumn() {
+		return column;
+	}
+
+	public void setColumn(int column) {
+		this.column = column;
 	}
 }
