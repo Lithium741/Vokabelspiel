@@ -22,21 +22,6 @@ public class WortfallView extends JFrame {
 	private Wort wort4;
 	private Balken balken;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					WortfallView frame = new WortfallView();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	public void paint(Graphics g) {
 		super.paint(g);
@@ -76,27 +61,23 @@ public class WortfallView extends JFrame {
 		txtrScore.setBounds(198, 11, 143, 22);
 		contentPane.add(txtrScore);
 
-		wort1 = new Wort();
+		wort1 = new Wort(10);
 		wort1.setSize(200, 15);
-		wort1.setLocation(5, 40);
 		wort1.setWort("wort1");
 		contentPane.add(wort1);
 
-		wort2 = new Wort();
+		wort2 = new Wort(211);
 		wort2.setSize(200, 15);
-		wort2.setLocation(206, 40);
 		wort2.setWort("wort2");
 		contentPane.add(wort2);
 
-		wort3 = new Wort();
+		wort3 = new Wort(412);
 		wort3.setSize(200, 15);
-		wort3.setLocation(407, 40);
 		wort3.setWort("wort3");
 		contentPane.add(wort3);
 
-		wort4 = new Wort();
+		wort4 = new Wort(613);
 		wort4.setSize(200, 15);
-		wort4.setLocation(608, 40);
 		wort4.setWort("wort4");
 		contentPane.add(wort4);
 

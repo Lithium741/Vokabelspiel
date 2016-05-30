@@ -12,7 +12,8 @@ public class Wort extends JPanel {
 	private int x;
 	private String wort;
 
-	public Wort() {
+	public Wort(int x) {
+		this.x = x;
 	}
 
 	/**
