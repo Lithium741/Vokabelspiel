@@ -77,7 +77,7 @@ public class Wortfall extends JFrame {
 						feld.setLife(20);
 					}
 				} catch (Exception e) {
-					System.out.println("Thread");
+					dispose();
 				}
 			}
 		};

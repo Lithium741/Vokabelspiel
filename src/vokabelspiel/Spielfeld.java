@@ -9,6 +9,7 @@ import java.util.Random;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -59,7 +60,8 @@ public class Spielfeld extends JPanel {
 			wort3 = new Wort(this, 412, Verwaltung.vokabeln.get(c).rndLang(z));
 			wort4 = new Wort(this, 613, Verwaltung.vokabeln.get(d).rndLang(z));
 		} catch (IndexOutOfBoundsException e) {
-
+			JOptionPane.showMessageDialog(null, "Keine Vokabeln vorhanden");
+			wFall.dispose();
 		}
 		/* keyListener der die Tastendrücke abfängt */
 		addKeyListener(new KeyListener() {
@@ -83,11 +85,14 @@ public class Spielfeld extends JPanel {
 	 * generiert neue Zufallszahlen
 	 */
 	public static void newRnd() {
+		try {
 		a = (int) (Math.random() * (Verwaltung.vokabeln.size() - 1));
 		b = (int) (Math.random() * (Verwaltung.vokabeln.size() - 1));
 		c = (int) (Math.random() * (Verwaltung.vokabeln.size() - 1));
 		d = (int) (Math.random() * (Verwaltung.vokabeln.size() - 1));
-		z = (int) (Math.random() * 11);
+		z = (int) Math.random();
+		} catch (IndexOutOfBoundsException e) {
+		}
 	}
 
 	/**
@@ -104,6 +109,7 @@ public class Spielfeld extends JPanel {
 			 */
 			if (balken.getColumn() == Wortfall.getColumn()) {
 				score++;
+				setRand();
 				wFall.getTxtrScore().setText("Score: " + score);
 				reset();
 			/*
@@ -112,6 +118,7 @@ public class Spielfeld extends JPanel {
 			 */
 			} else {
 				life -= 2;
+				setRand();
 				wFall.getProgressBar().setValue(life);
 				reset();
 			}
@@ -138,6 +145,7 @@ public class Spielfeld extends JPanel {
 	 * @return String
 	 */
 	public static String getWort(int a) {
+		try {
 		switch (a) {
 		case 1:
 			Wortfall.setColumn(1);
@@ -153,6 +161,9 @@ public class Spielfeld extends JPanel {
 			return Verwaltung.vokabeln.get(d).rndLang(z - 1);
 		}
 		return "";
+		} catch (IndexOutOfBoundsException e) {
+			return e.toString();
+		}
 	}
 	
 	/**
@@ -168,7 +179,7 @@ public class Spielfeld extends JPanel {
 			wort3.paint(g2d, Verwaltung.vokabeln.get(c).rndLang(z));
 			wort4.paint(g2d, Verwaltung.vokabeln.get(d).rndLang(z));
 		} catch (IndexOutOfBoundsException e) {
-
+			wFall.dispose();
 		}
 		balken.paint(g2d);
 	}
