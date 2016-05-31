@@ -78,6 +78,7 @@ public class Wortfall extends JFrame {
 					}
 				} catch (Exception e) {
 					dispose();
+					timer.stop();;
 				}
 			}
 		};

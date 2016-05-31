@@ -90,7 +90,11 @@ public class Spielfeld extends JPanel {
 		b = (int) (Math.random() * (Verwaltung.vokabeln.size() - 1));
 		c = (int) (Math.random() * (Verwaltung.vokabeln.size() - 1));
 		d = (int) (Math.random() * (Verwaltung.vokabeln.size() - 1));
+<<<<<<< HEAD
 		z = (int) Math.random();
+=======
+		z = (int) (Math.random() * 11);
+>>>>>>> Manuel
 		} catch (IndexOutOfBoundsException e) {
 		}
 	}
