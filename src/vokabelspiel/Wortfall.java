@@ -78,7 +78,8 @@ public class Wortfall extends JFrame {
 					}
 				} catch (Exception e) {
 					dispose();
-					timer.stop();;
+					timer.stop();
+					;
 				}
 			}
 		};
@@ -110,16 +111,19 @@ public class Wortfall extends JFrame {
 		txtrScore.setFont(new Font("Impact", Font.PLAIN, 18));
 		txtrScore.setText("Score: " + feld.getScore());
 
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(0, 0, 4, 22);
-		feld.add(textArea);
-
 		progressBar = new JProgressBar(0, 20);
 		progressBar.setValue(feld.getLife());
 		progressBar.setForeground(Color.GREEN);
 		progressBar.setBackground(Color.RED);
-		progressBar.setBounds(543, 11, 221, 22);
+		progressBar.setBounds(543, 15, 221, 22);
 		feld.add(progressBar);
+
+		JTextArea txtrLife = new JTextArea();
+		txtrLife.setBounds(481, 11, 54, 22);
+		txtrLife.setBackground(new Color(240, 240, 240));
+		txtrLife.setFont(new Font("Impact", Font.PLAIN, 18));
+		txtrLife.setText("Life");
+		feld.add(txtrLife);
 
 		/* Timer, der in periodischen Abständen den taskPerformer aufruft */
 		timer = new Timer(delay, taskPerformer);

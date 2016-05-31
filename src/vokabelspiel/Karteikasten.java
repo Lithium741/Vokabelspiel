@@ -1,6 +1,5 @@
 package vokabelspiel;
 
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -25,7 +24,6 @@ public class Karteikasten {
 	 * @return String
 	 */
 	public static String getRandomVokabel() {
-		try {
 		if ((b % 2) == 0) {
 			/*
 			 * Stellt sicher, dass das Wort nicht im dritten Fach ist
@@ -43,9 +41,6 @@ public class Karteikasten {
 			return Verwaltung.vokabeln.get(a).getEnglisch();
 		} else {
 			return "";
-		}
-		} catch (IndexOutOfBoundsException e) {
-			return "Keine Vokabeln vorhanden";
 		}
 	}
 
