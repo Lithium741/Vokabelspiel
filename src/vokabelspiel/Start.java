@@ -21,8 +21,9 @@ import javax.swing.JTextArea;
 import java.awt.Color;
 
 /**
- * Start-Klasse
+ * Start-Klasse 
  * startet das Programm und regelt die GUI zum großteil
+ * 
  * @author Manuel S., Mareen B., Alex B., Kevin K.
  *
  */
@@ -70,31 +71,6 @@ public class Start extends JFrame {
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		contentPane.add(tabbedPane);
 
-		JPanel Spiele = new JPanel();
-		tabbedPane.addTab("Spiele", null, Spiele, null);
-		Spiele.setLayout(null);
-
-		JButton btnSpiel = new JButton("Karteikasten");
-		btnSpiel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				/* startet den Karteikasten */
-				Vokabelkasten.invoke();
-			}
-		});
-		btnSpiel.setBounds(10, 11, 117, 29);
-		Spiele.add(btnSpiel);
-
-		JButton btnSpiel2 = new JButton("Wortfall");
-		btnSpiel2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				/* startet Wortfall */
-				Spielfeld.newRnd();
-				Wortfall.invoke();
-			}
-		});
-		btnSpiel2.setBounds(10, 71, 117, 29);
-		Spiele.add(btnSpiel2);
-
 		JPanel Verwaltung = new JPanel();
 		tabbedPane.addTab("Verwaltung", null, Verwaltung, null);
 		Verwaltung.setLayout(null);
@@ -113,8 +89,8 @@ public class Start extends JFrame {
 		btnLschen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				/*
-				 * fragt ab, ob die aktion ausgeführt werden soll und ruft dann die
-				 * loeschen-Methode aus der Verwaltung-Klasse auf
+				 * fragt ab, ob die aktion ausgeführt werden soll und ruft dann
+				 * die loeschen-Methode aus der Verwaltung-Klasse auf
 				 */
 				int a = JOptionPane.showOptionDialog(null, Start.list.getSelectedItem() + " wirklich löschen?",
 						"Löschen bestätigen", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null,
@@ -247,5 +223,31 @@ public class Start extends JFrame {
 		txtrDeutsch.setText("Deutsch");
 		txtrDeutsch.setBounds(380, 53, 225, 22);
 		Verwaltung.add(txtrDeutsch);
+
+		JPanel Spiele = new JPanel();
+		tabbedPane.addTab("Spiele", null, Spiele, null);
+		Spiele.setLayout(null);
+
+		JButton btnSpiel = new JButton("Karteikasten");
+		btnSpiel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/* startet den Karteikasten */
+
+				Vokabelkasten.invoke();
+			}
+		});
+		btnSpiel.setBounds(10, 11, 117, 29);
+		Spiele.add(btnSpiel);
+
+		JButton btnSpiel2 = new JButton("Wortfall");
+		btnSpiel2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				/* startet Wortfall */
+				Spielfeld.newRnd();
+				Wortfall.invoke();
+			}
+		});
+		btnSpiel2.setBounds(10, 71, 117, 29);
+		Spiele.add(btnSpiel2);
 	}
 }

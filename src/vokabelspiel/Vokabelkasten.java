@@ -14,8 +14,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 /**
- * Vokabelkasten-Klasse
- * GUI-Teil des karteikasten-Spiels
+ * Vokabelkasten-Klasse GUI-Teil des karteikasten-Spiels
+ * 
  * @author Manuel S., Mareen B., Alex B., Kevin K.
  *
  */
@@ -45,6 +45,7 @@ public class Vokabelkasten extends JFrame {
 	 */
 	public Vokabelkasten() {
 
+		try {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 308, 270);
 		contentPane = new JPanel();
@@ -86,5 +87,7 @@ public class Vokabelkasten extends JFrame {
 		});
 		btnUeberpruefungEingabe.setBounds(10, 176, 168, 23);
 		contentPane.add(btnUeberpruefungEingabe);
+		} catch (IndexOutOfBoundsException e) {
+		}
 	}
 }
