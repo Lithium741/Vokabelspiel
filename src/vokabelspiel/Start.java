@@ -55,11 +55,14 @@ public class Start extends JFrame {
 	 * Startet das Programm
 	 */
 	public static void main(String[] args) {
+		/* ruft die lokalisierungdateien ab */
 		baseName = "resources.Vokabelspiel";
+		/* Abfrage der gewünschten Sprache*/
 		b = JOptionPane.showOptionDialog(null, "Select language", "Select language", JOptionPane.YES_NO_OPTION,
 				JOptionPane.QUESTION_MESSAGE, null, new String[] { "German", "English" }, "English");
 		if (b == 0) {
 			c = 0;
+			/* ruft die deutsche lokalisierungsdatei auf */
 			Locale.setDefault(new Locale("de", "DE"));
 			try {
 				bundle = ResourceBundle.getBundle(baseName);
@@ -69,6 +72,7 @@ public class Start extends JFrame {
 		}
 		else if (b == 1) {
 			c = 1;
+			/* ruft die englische lokalisierungsdatei auf */
 			Locale.setDefault(new Locale("en", "EN"));
 			try {
 				bundle = ResourceBundle.getBundle(baseName);
@@ -77,6 +81,7 @@ public class Start extends JFrame {
 			}
 		} else if (b != 1 && b != 0) {
 			c = 1;
+			/* ruft die englische lokalisierungsdatei auf */
 			Locale.setDefault(new Locale("en", "EN"));
 			try {
 				bundle = ResourceBundle.getBundle(baseName);
@@ -96,25 +101,6 @@ public class Start extends JFrame {
 				}
 			}
 		});
-	}
-
-	public void changeLocale(int a) {
-		if (a == 0) {
-			Locale.setDefault(new Locale("en", "EN"));
-			try {
-				bundle = ResourceBundle.getBundle(baseName);
-			} catch (MissingResourceException e) {
-				System.err.println(e);
-			}
-		} else if (a == 1) {
-			Locale.setDefault(new Locale("de", "DE"));
-			try {
-				bundle = ResourceBundle.getBundle(baseName);
-			} catch (MissingResourceException e) {
-				System.err.println(e);
-			}
-		}
-		repaint();
 	}
 
 	/**
@@ -292,6 +278,7 @@ public class Start extends JFrame {
 		Icon icon1 = new ImageIcon(getClass().getResource("/britmerican.png"));
 		Icon icon2 = new ImageIcon(getClass().getResource("/german.png"));
 
+		/* Flaggen-Icon in der linken unteren Ecke*/
 		JLabel lblNewLabel;
 		if (c == 0) {
 			lblNewLabel = new JLabel(icon2);
