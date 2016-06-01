@@ -7,7 +7,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.BoxLayout;
@@ -21,7 +20,6 @@ import java.awt.event.MouseEvent;
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
-
 import javax.swing.JTextArea;
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -297,7 +295,7 @@ public class Start extends JFrame {
 				Vokabelkasten.invoke();
 			}
 		});
-		btnSpiel.setBounds(10, 11, 117, 29);
+		btnSpiel.setBounds(10, 11, 156, 81);
 		Spiele.add(btnSpiel);
 
 		JButton btnSpiel2 = new JButton(getBundle().getString("wortfall"));
@@ -308,7 +306,7 @@ public class Start extends JFrame {
 				Wortfall.invoke();
 			}
 		});
-		btnSpiel2.setBounds(10, 71, 117, 29);
+		btnSpiel2.setBounds(176, 11, 156, 81);
 		Spiele.add(btnSpiel2);
 	}
 
@@ -321,14 +319,6 @@ public class Start extends JFrame {
 
 	public static void setBundle(ResourceBundle bundle) {
 		Start.bundle = bundle;
-	}
-
-	public JPanel getContentPane() {
-		return contentPane;
-	}
-
-	public void setContentPane(JPanel contentPane) {
-		this.contentPane = contentPane;
 	}
 
 	public JFileChooser getFc() {

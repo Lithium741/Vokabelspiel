@@ -18,9 +18,7 @@ import javax.swing.JPanel;
  */
 @SuppressWarnings("serial")
 public class Spielfeld extends JPanel {
-	Wortfall wFall;
-	private int y = 0;
-	private int x = 5;
+	private Wortfall wFall;
 	private static int score = 0;
 	private static int life = 20;
 	private static int a;
@@ -53,10 +51,10 @@ public class Spielfeld extends JPanel {
 		this.wFall = wFall;
 		try {
 
-			wort1 = new Wort(this, 10, Verwaltung.vokabeln.get(a).rndLang(z));
-			wort2 = new Wort(this, 211, Verwaltung.vokabeln.get(b).rndLang(z));
-			wort3 = new Wort(this, 412, Verwaltung.vokabeln.get(c).rndLang(z));
-			wort4 = new Wort(this, 613, Verwaltung.vokabeln.get(d).rndLang(z));
+			wort1 = new Wort(10, Verwaltung.vokabeln.get(a).rndLang(z));
+			wort2 = new Wort(211, Verwaltung.vokabeln.get(b).rndLang(z));
+			wort3 = new Wort(412, Verwaltung.vokabeln.get(c).rndLang(z));
+			wort4 = new Wort(613, Verwaltung.vokabeln.get(d).rndLang(z));
 		} catch (IndexOutOfBoundsException e) {
 			JOptionPane.showMessageDialog(null, Start.getBundle().getString("keineVok"));
 			wFall.dispose();
@@ -201,22 +199,6 @@ public class Spielfeld extends JPanel {
 		Spielfeld.life = life;
 	}
 
-	public int getY() {
-		return y;
-	}
-
-	public void setY(int y) {
-		this.y = y;
-	}
-
-	public int getX() {
-		return x;
-	}
-
-	public void setX(int x) {
-		this.x = x;
-	}
-
 	public static int getA() {
 		return a;
 	}
@@ -257,41 +239,6 @@ public class Spielfeld extends JPanel {
 		Spielfeld.z = z;
 	}
 
-	public static void setRand(Random rand) {
-		Spielfeld.rand = rand;
-	}
-
-	public Wort getWort1() {
-		return wort1;
-	}
-
-	public void setWort1(Wort wort1) {
-		this.wort1 = wort1;
-	}
-
-	public Wort getWort2() {
-		return wort2;
-	}
-
-	public void setWort2(Wort wort2) {
-		this.wort2 = wort2;
-	}
-
-	public Wort getWort3() {
-		return wort3;
-	}
-
-	public void setWort3(Wort wort3) {
-		this.wort3 = wort3;
-	}
-
-	public Wort getWort4() {
-		return wort4;
-	}
-
-	public void setWort4(Wort wort4) {
-		this.wort4 = wort4;
-	}
 
 	public Balken getBalken() {
 		return balken;
@@ -301,8 +248,7 @@ public class Spielfeld extends JPanel {
 		this.balken = balken;
 	}
 
-	public static int getRand() {
-
+	public static int getE() {
 		return e;
 	}
 }

@@ -3,6 +3,8 @@ package vokabelspiel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.Timer;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -10,7 +12,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import java.awt.EventQueue;
-
 import javax.swing.JProgressBar;
 import javax.swing.JTextArea;
 
@@ -25,7 +26,7 @@ import javax.swing.JTextArea;
 public class Wortfall extends JFrame {
 	private JPanel contentPane;
 	private static Timer timer;
-	private Spielfeld feld;
+	private static Spielfeld feld;
 	private static JTextArea txtrScore;
 	private static JTextArea txtrWort;
 	private static JProgressBar progressBar;
@@ -40,6 +41,17 @@ public class Wortfall extends JFrame {
 				try {
 					Wortfall frame = new Wortfall();
 					frame.setVisible(true);
+					/*
+					 * setzt das Spiel zurück, wenn das Fenster geschlossen wird
+					 */
+					frame.addWindowListener(new WindowAdapter() {
+						@Override
+						public void windowClosing(WindowEvent e) {
+							timer.stop();
+							feld.setLife(20);
+							feld.setScore(0);
+						}
+					});
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -51,7 +63,6 @@ public class Wortfall extends JFrame {
 	 * Konstruktor, in dem das Fenster gezeichnet und gefüllt wird
 	 */
 	public Wortfall() {
-
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 800, 570);
 		contentPane = new JPanel();
@@ -65,7 +76,7 @@ public class Wortfall extends JFrame {
 			public void actionPerformed(ActionEvent evt) {
 				try {
 					feld.move();
-					txtrWort.setText(Spielfeld.getWort(Spielfeld.getRand()));
+					txtrWort.setText(Spielfeld.getWort(Spielfeld.getE()));
 					feld.repaint();
 					/* beendet das Spiel bei Verlust des ganzen Lebens */
 					if (feld.getLife() == 0) {
@@ -99,7 +110,7 @@ public class Wortfall extends JFrame {
 		feld.add(txtrWort);
 		txtrWort.setForeground(Color.BLACK);
 		txtrWort.setFont(new Font("Impact", Font.PLAIN, 18));
-		txtrWort.setText(Spielfeld.getWort(Spielfeld.getRand()));
+		txtrWort.setText(Spielfeld.getWort(Spielfeld.getE()));
 
 		txtrScore = new JTextArea();
 		txtrScore.setBackground(new Color(240, 240, 240));
@@ -127,7 +138,6 @@ public class Wortfall extends JFrame {
 		timer = new Timer(delay, taskPerformer);
 		timer.setInitialDelay(delay);
 		timer.start();
-
 	}
 
 	/**

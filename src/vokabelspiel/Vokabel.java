@@ -1,7 +1,8 @@
 package vokabelspiel;
 
 /**
- * Vokabel-Klasse Abstrakter Datentyp
+ * Vokabel-Klasse 
+ * Abstrakter Datentyp
  * 
  * @author Manuel S., Mareen B., Alex B., Kevin K.
  *
