@@ -1,8 +1,6 @@
 package vokabelspiel;
 
 import java.awt.EventQueue;
-import java.awt.Image;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -12,8 +10,6 @@ import javax.swing.JFileChooser;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
-import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -22,7 +18,6 @@ import javax.swing.JTextField;
 import java.awt.List;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
@@ -326,5 +321,77 @@ public class Start extends JFrame {
 
 	public static void setBundle(ResourceBundle bundle) {
 		Start.bundle = bundle;
+	}
+
+	public JPanel getContentPane() {
+		return contentPane;
+	}
+
+	public void setContentPane(JPanel contentPane) {
+		this.contentPane = contentPane;
+	}
+
+	public JFileChooser getFc() {
+		return fc;
+	}
+
+	public void setFc(JFileChooser fc) {
+		this.fc = fc;
+	}
+
+	public int getA() {
+		return a;
+	}
+
+	public void setA(int a) {
+		this.a = a;
+	}
+
+	public static int getB() {
+		return b;
+	}
+
+	public static void setB(int b) {
+		Start.b = b;
+	}
+
+	public static int getC() {
+		return c;
+	}
+
+	public static void setC(int c) {
+		Start.c = c;
+	}
+
+	public static List getList() {
+		return list;
+	}
+
+	public static void setList(List list) {
+		Start.list = list;
+	}
+
+	public static List getList_1() {
+		return list_1;
+	}
+
+	public static void setList_1(List list_1) {
+		Start.list_1 = list_1;
+	}
+
+	public JTextField getSuchen() {
+		return suchen;
+	}
+
+	public void setSuchen(JTextField suchen) {
+		this.suchen = suchen;
+	}
+
+	public static String getBaseName() {
+		return baseName;
+	}
+
+	public static void setBaseName(String baseName) {
+		Start.baseName = baseName;
 	}
 }

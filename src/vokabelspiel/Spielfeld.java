@@ -6,9 +6,6 @@ import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Random;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -19,6 +16,7 @@ import javax.swing.JPanel;
  * @author Manuel S., Mareen B., Alex B., Kevin K.
  *
  */
+@SuppressWarnings("serial")
 public class Spielfeld extends JPanel {
 	Wortfall wFall;
 	private int y = 0;

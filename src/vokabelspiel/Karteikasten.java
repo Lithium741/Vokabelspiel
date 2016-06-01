@@ -1,6 +1,5 @@
 package vokabelspiel;
 
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**

@@ -2,8 +2,6 @@ package vokabelspiel;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
-
 /**
  * Wort-Klasse
  * Wörter, die aufgefangen werden müssen

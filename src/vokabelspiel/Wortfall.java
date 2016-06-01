@@ -1,22 +1,18 @@
 package vokabelspiel;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Random;
-
 import javax.swing.Timer;
-
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
+import java.awt.EventQueue;
+
 import javax.swing.JProgressBar;
+import javax.swing.JTextArea;
 
 /**
  * Wortfall-Klasse 
@@ -25,6 +21,7 @@ import javax.swing.JProgressBar;
  * @author Manuel S., Mareen B., Alex B., Kevin K.
  *
  */
+@SuppressWarnings("serial")
 public class Wortfall extends JFrame {
 	private JPanel contentPane;
 	private static Timer timer;

@@ -7,9 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
-
 import javax.swing.JFileChooser;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**

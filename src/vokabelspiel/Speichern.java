@@ -1,8 +1,6 @@
 package vokabelspiel;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.*;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -22,6 +20,7 @@ import java.awt.event.ActionEvent;
  * @author Manuel S., Mareen B., Alex B., Kevin K.
  *
  */
+@SuppressWarnings("serial")
 public class Speichern extends JFrame {
 
 	private JPanel contentPane;
