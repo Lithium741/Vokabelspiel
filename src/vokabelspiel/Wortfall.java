@@ -72,7 +72,8 @@ public class Wortfall extends JFrame {
 					feld.repaint();
 					/* beendet das Spiel bei Verlust des ganzen Lebens */
 					if (feld.getLife() == 0) {
-						JOptionPane.showMessageDialog(null, "Verloren");
+						JOptionPane.showMessageDialog(null, Start.getBundle().getString("verloren"));
+						timer.stop();
 						dispose();
 						feld.setLife(20);
 					}

@@ -56,19 +56,19 @@ public class Karteikasten {
 		if ((b % 2) == 0) {
 			if (wort.getText().equals(Verwaltung.vokabeln.get(a).getEnglisch())) {
 				Verwaltung.vokabeln.get(a).sprung();
-				return "Richtig!" + "\n" + Verwaltung.vokabeln.get(a).getDeutsch() + " = "
+				return  Start.getBundle().getString("richtig")  + "\n" + Verwaltung.vokabeln.get(a).getDeutsch() + " = "
 						+ Verwaltung.vokabeln.get(a).getEnglisch();
 			} else {
-				return "Falsch" + "\n" + Verwaltung.vokabeln.get(a).getDeutsch() + " = "
+				return Start.getBundle().getString("falsch") + "\n" + Verwaltung.vokabeln.get(a).getDeutsch() + " = "
 						+ Verwaltung.vokabeln.get(a).getEnglisch();
 			}
 		} else if ((b % 2) != 0) {
 			if (wort.getText().equals(Verwaltung.vokabeln.get(a).getDeutsch())) {
 				Verwaltung.vokabeln.get(a).sprung();
-				return "Richtig!" + "\n" + Verwaltung.vokabeln.get(a).getDeutsch() + " = "
+				return Start.getBundle().getString("richtig") + "\n" + Verwaltung.vokabeln.get(a).getDeutsch() + " = "
 						+ Verwaltung.vokabeln.get(a).getEnglisch();
 			} else {
-				return "Falsch" + "\n" + Verwaltung.vokabeln.get(a).getDeutsch() + " = "
+				return Start.getBundle().getString("falsch") + "\n" + Verwaltung.vokabeln.get(a).getDeutsch() + " = "
 						+ Verwaltung.vokabeln.get(a).getEnglisch();
 			}
 		} else {

@@ -60,7 +60,7 @@ public class Spielfeld extends JPanel {
 			wort3 = new Wort(this, 412, Verwaltung.vokabeln.get(c).rndLang(z));
 			wort4 = new Wort(this, 613, Verwaltung.vokabeln.get(d).rndLang(z));
 		} catch (IndexOutOfBoundsException e) {
-			JOptionPane.showMessageDialog(null, "Keine Vokabeln vorhanden");
+			JOptionPane.showMessageDialog(null, Start.getBundle().getString("keineVok"));
 			wFall.dispose();
 		}
 		/* keyListener der die Tastendrücke abfängt */

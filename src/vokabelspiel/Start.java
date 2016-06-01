@@ -1,6 +1,7 @@
 package vokabelspiel;
 
 import java.awt.EventQueue;
+import java.awt.Image;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -11,18 +12,27 @@ import javax.swing.JFileChooser;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import java.awt.List;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.util.Locale;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
+
 import javax.swing.JTextArea;
 import java.awt.Color;
+import javax.swing.JLabel;
 
 /**
- * Start-Klasse 
- * startet das Programm und regelt die GUI zum großteil
+ * Start-Klasse startet das Programm und regelt die GUI zum großteil
  * 
  * @author Manuel S., Mareen B., Alex B., Kevin K.
  *
@@ -33,14 +43,47 @@ public class Start extends JFrame {
 	private JPanel contentPane;
 	private JFileChooser fc;
 	private int a;
+	private static int b;
+	private static int c;
 	public static List list;
 	public static List list_1;
 	private JTextField suchen;
+	private static ResourceBundle bundle;
+	private static String baseName;
 
 	/**
 	 * Startet das Programm
 	 */
 	public static void main(String[] args) {
+		baseName = "resources.Vokabelspiel";
+		b = JOptionPane.showOptionDialog(null, "Select language", "Select language", JOptionPane.YES_NO_OPTION,
+				JOptionPane.QUESTION_MESSAGE, null, new String[] { "German", "English" }, "English");
+		if (b == 0) {
+			c = 0;
+			Locale.setDefault(new Locale("de", "DE"));
+			try {
+				bundle = ResourceBundle.getBundle(baseName);
+			} catch (MissingResourceException e) {
+				System.err.println(e);
+			}
+		}
+		else if (b == 1) {
+			c = 1;
+			Locale.setDefault(new Locale("en", "EN"));
+			try {
+				bundle = ResourceBundle.getBundle(baseName);
+			} catch (MissingResourceException e) {
+				System.err.println(e);
+			}
+		} else if (b != 1 && b != 0) {
+			c = 1;
+			Locale.setDefault(new Locale("en", "EN"));
+			try {
+				bundle = ResourceBundle.getBundle(baseName);
+			} catch (MissingResourceException e) {
+				System.err.println(e);
+			}
+		}
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -53,6 +96,25 @@ public class Start extends JFrame {
 				}
 			}
 		});
+	}
+
+	public void changeLocale(int a) {
+		if (a == 0) {
+			Locale.setDefault(new Locale("en", "EN"));
+			try {
+				bundle = ResourceBundle.getBundle(baseName);
+			} catch (MissingResourceException e) {
+				System.err.println(e);
+			}
+		} else if (a == 1) {
+			Locale.setDefault(new Locale("de", "DE"));
+			try {
+				bundle = ResourceBundle.getBundle(baseName);
+			} catch (MissingResourceException e) {
+				System.err.println(e);
+			}
+		}
+		repaint();
 	}
 
 	/**
@@ -72,10 +134,10 @@ public class Start extends JFrame {
 		contentPane.add(tabbedPane);
 
 		JPanel Verwaltung = new JPanel();
-		tabbedPane.addTab("Verwaltung", null, Verwaltung, null);
+		tabbedPane.addTab(getBundle().getString("verwaltung"), null, Verwaltung, null);
 		Verwaltung.setLayout(null);
 
-		JButton btnSpeichern = new JButton("Speichern");
+		JButton btnSpeichern = new JButton(getBundle().getString("speichern"));
 		btnSpeichern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				/* öffnet das Speichern-Fenster */
@@ -85,23 +147,25 @@ public class Start extends JFrame {
 		btnSpeichern.setBounds(10, 26, 133, 29);
 		Verwaltung.add(btnSpeichern);
 
-		JButton btnLschen = new JButton("L\u00F6schen");
+		JButton btnLschen = new JButton(getBundle().getString("löschen"));
 		btnLschen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				/*
 				 * fragt ab, ob die aktion ausgeführt werden soll und ruft dann
 				 * die loeschen-Methode aus der Verwaltung-Klasse auf
 				 */
-				int a = JOptionPane.showOptionDialog(null, Start.list.getSelectedItem() + " wirklich löschen?",
-						"Löschen bestätigen", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null,
-						new String[] { "Ja", "Nein" }, "Nein");
+				int a = JOptionPane.showOptionDialog(null,
+						getBundle().getString("löschen") + "?" + Start.list.getSelectedItem(), "Löschen bestätigen",
+						JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null,
+						new String[] { getBundle().getString("ja"), getBundle().getString("nein") },
+						getBundle().getString("nein"));
 				JOptionPane.showMessageDialog(null, vokabelspiel.Verwaltung.loeschen(Start.list.getSelectedItem(), a));
 			}
 		});
 		btnLschen.setBounds(10, 81, 133, 29);
 		Verwaltung.add(btnLschen);
 
-		JButton btnDateiSpeichern = new JButton("Datei Speichern");
+		JButton btnDateiSpeichern = new JButton(getBundle().getString("datSpeichern"));
 		btnDateiSpeichern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				/* öffnet einen Filechooser */
@@ -119,16 +183,17 @@ public class Start extends JFrame {
 		btnDateiSpeichern.setBounds(10, 134, 133, 29);
 		Verwaltung.add(btnDateiSpeichern);
 
-		JButton btnDateiLaden = new JButton("Datei Laden");
+		JButton btnDateiLaden = new JButton(getBundle().getString("datLaden"));
 		btnDateiLaden.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				/* öffnet einen Filechooser */
 				fc = new JFileChooser();
 				a = fc.showOpenDialog(null);
 				/* Auswahldialog */
-				int b = JOptionPane.showOptionDialog(null, "Alte Liste überschreiben?", "Datei laden",
-						JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, new String[] { "Ja", "Nein" },
-						"Nein");
+				int b = JOptionPane.showOptionDialog(null, getBundle().getString("listeÜberschr"),
+						getBundle().getString("datLaden"), JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null,
+						new String[] { getBundle().getString("ja"), getBundle().getString("nein") },
+						getBundle().getString("nein"));
 				try {
 					/*
 					 * wenn ja, läd die Vokabeln aus der Datei und überschreibt
@@ -191,7 +256,7 @@ public class Start extends JFrame {
 		Verwaltung.add(suchen);
 		suchen.setColumns(10);
 
-		JButton btnSuchen = new JButton("Suchen");
+		JButton btnSuchen = new JButton(getBundle().getString("suchen"));
 		btnSuchen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				/*
@@ -214,21 +279,35 @@ public class Start extends JFrame {
 
 		JTextArea txtrEnglisch = new JTextArea();
 		txtrEnglisch.setBackground(new Color(240, 240, 240));
-		txtrEnglisch.setText("Englisch");
+		txtrEnglisch.setText(getBundle().getString("eWort"));
 		txtrEnglisch.setBounds(153, 53, 221, 22);
 		Verwaltung.add(txtrEnglisch);
 
 		JTextArea txtrDeutsch = new JTextArea();
 		txtrDeutsch.setBackground(new Color(240, 240, 240));
-		txtrDeutsch.setText("Deutsch");
+		txtrDeutsch.setText(getBundle().getString("dWort"));
 		txtrDeutsch.setBounds(380, 53, 225, 22);
 		Verwaltung.add(txtrDeutsch);
+		
+		Icon icon1 = new ImageIcon(getClass().getResource("/britmerican.png"));
+		Icon icon2 = new ImageIcon(getClass().getResource("/german.png"));
 
+		JLabel lblNewLabel;
+		if (c == 0) {
+			lblNewLabel = new JLabel(icon2);
+		} else if (c == 1) {
+			lblNewLabel = new JLabel(icon1);
+		} else {
+			lblNewLabel = new JLabel("Error");
+		}
+		lblNewLabel.setBounds(10, 370, 38, 28);
+		Verwaltung.add(lblNewLabel);
+		
 		JPanel Spiele = new JPanel();
-		tabbedPane.addTab("Spiele", null, Spiele, null);
+		tabbedPane.addTab(getBundle().getString("spiele"), null, Spiele, null);
 		Spiele.setLayout(null);
 
-		JButton btnSpiel = new JButton("Karteikasten");
+		JButton btnSpiel = new JButton(getBundle().getString("karteikasten"));
 		btnSpiel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				/* startet den Karteikasten */
@@ -239,7 +318,7 @@ public class Start extends JFrame {
 		btnSpiel.setBounds(10, 11, 117, 29);
 		Spiele.add(btnSpiel);
 
-		JButton btnSpiel2 = new JButton("Wortfall");
+		JButton btnSpiel2 = new JButton(getBundle().getString("wortfall"));
 		btnSpiel2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				/* startet Wortfall */
@@ -249,5 +328,16 @@ public class Start extends JFrame {
 		});
 		btnSpiel2.setBounds(10, 71, 117, 29);
 		Spiele.add(btnSpiel2);
+	}
+
+	/**
+	 * getter und setter
+	 */
+	public static ResourceBundle getBundle() {
+		return bundle;
+	}
+
+	public static void setBundle(ResourceBundle bundle) {
+		Start.bundle = bundle;
 	}
 }

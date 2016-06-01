@@ -15,7 +15,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 /**
- * Speichern-Klasse Erstellt das Fenster und regelt den Ablauf der
+ * Speichern-Klasse 
+ * Erstellt das Fenster und regelt den Ablauf der
  * Speichern-Funktion des Programms
  * 
  * @author Manuel S., Mareen B., Alex B., Kevin K.
@@ -57,34 +58,34 @@ public class Speichern extends JFrame {
 		contentPane.setLayout(null);
 
 		txtDeutschesWort = new JTextField();
-		txtDeutschesWort.setText("deutsches Wort");
+		txtDeutschesWort.setText(Start.getBundle().getString("dWort"));
 		txtDeutschesWort.setBounds(10, 23, 86, 20);
 		contentPane.add(txtDeutschesWort);
 		txtDeutschesWort.setColumns(10);
 
 		txtEnglischesWort = new JTextField();
-		txtEnglischesWort.setText("englisches Wort");
+		txtEnglischesWort.setText(Start.getBundle().getString("eWort"));
 		txtEnglischesWort.setBounds(10, 59, 86, 20);
 		contentPane.add(txtEnglischesWort);
 		txtEnglischesWort.setColumns(10);
 
-		JRadioButton rdbtnAlltag = new JRadioButton("Alltag");
+		JRadioButton rdbtnAlltag = new JRadioButton(Start.getBundle().getString("alltag"));
 		rdbtnAlltag.setBounds(150, 22, 109, 23);
 		contentPane.add(rdbtnAlltag);
 
-		JRadioButton rdbtnNatur = new JRadioButton("Natur");
+		JRadioButton rdbtnNatur = new JRadioButton(Start.getBundle().getString("natur"));
 		rdbtnNatur.setBounds(150, 48, 109, 23);
 		contentPane.add(rdbtnNatur);
 
-		JRadioButton rdbtnFahrzeuge = new JRadioButton("Fahrzeuge");
+		JRadioButton rdbtnFahrzeuge = new JRadioButton(Start.getBundle().getString("fahrzeuge"));
 		rdbtnFahrzeuge.setBounds(150, 74, 109, 23);
 		contentPane.add(rdbtnFahrzeuge);
 
-		JRadioButton rdbtnLebensmittel = new JRadioButton("Lebensmittel");
+		JRadioButton rdbtnLebensmittel = new JRadioButton(Start.getBundle().getString("lebensmittel"));
 		rdbtnLebensmittel.setBounds(150, 104, 109, 23);
 		contentPane.add(rdbtnLebensmittel);
 
-		JRadioButton rdbtnFachbegriffe = new JRadioButton("Fachbegriffe");
+		JRadioButton rdbtnFachbegriffe = new JRadioButton(Start.getBundle().getString("fachbegriffe"));
 		rdbtnFachbegriffe.setBounds(150, 130, 109, 23);
 		contentPane.add(rdbtnFachbegriffe);
 
@@ -97,22 +98,22 @@ public class Speichern extends JFrame {
 		group.add(rdbtnFachbegriffe);
 
 		/*
-		 * Speichert die Eingaben in einer neues Vokabel (neues Vokabel-Objekt
+		 * Speichert die Eingaben in einer neuen Vokabel (neues Vokabel-Objekt
 		 * in der Arraylist)
 		 */
-		JButton btnSpeichern = new JButton("Speichern");
+		JButton btnSpeichern = new JButton(Start.getBundle().getString("speichern"));
 		btnSpeichern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (rdbtnAlltag.isSelected()) {
-					a = "Alltag";
+					a = "alltag";
 				} else if (rdbtnNatur.isSelected()) {
-					a = "Natur";
+					a = "natur";
 				} else if (rdbtnFahrzeuge.isSelected()) {
-					a = "Fahrzeuge";
+					a = "fahrzeuge";
 				} else if (rdbtnLebensmittel.isSelected()) {
-					a = "Lebensmittel";
+					a = "lebensmittel";
 				} else if (rdbtnFachbegriffe.isSelected()) {
-					a = "Fachbegriffe";
+					a = "fachbegriffe";
 				}
 
 				/*
@@ -122,9 +123,11 @@ public class Speichern extends JFrame {
 						|| rdbtnFahrzeuge.isSelected() == true || rdbtnLebensmittel.isSelected() == true
 						|| rdbtnFachbegriffe.isSelected() == true) {
 					b = JOptionPane.showOptionDialog(null,
-							txtEnglischesWort.getText() + " = " + txtDeutschesWort.getText() + " speichern?",
+							Start.getBundle().getString("speichern") + "?" + "\n" + txtEnglischesWort.getText() + " = "
+									+ txtDeutschesWort.getText(),
 							"Speichern", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null,
-							new String[] { "Ja", "Nein" }, "Nein");
+							new String[] { Start.getBundle().getString("ja"), Start.getBundle().getString("nein") },
+							Start.getBundle().getString("nein"));
 					JOptionPane.showMessageDialog(null,
 							Verwaltung.speichern(txtEnglischesWort, txtDeutschesWort, a, b));
 
@@ -132,7 +135,7 @@ public class Speichern extends JFrame {
 				} else if (rdbtnAlltag.isSelected() == false && rdbtnNatur.isSelected() == false
 						&& rdbtnFahrzeuge.isSelected() == false && rdbtnLebensmittel.isSelected() == false
 						&& rdbtnFachbegriffe.isSelected() == false) {
-					JOptionPane.showMessageDialog(null, "Wählen Sie eine Kategorie aus!");
+					JOptionPane.showMessageDialog(null, Start.getBundle().getString("wählKat"));
 				}
 
 				/* aktualisiert die Listen */

@@ -6,10 +6,10 @@ import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 
 /**
- * Balken-Klasse
+ * Balken-Klasse 
  * Balken, mit dem die Wörter aufgefangen werden
  * 
- * @author Manuel
+ * @author Manuel S., Mareen B., Alex B., Kevin K.
  *
  *
  */
@@ -22,8 +22,6 @@ public class Balken {
 
 	/**
 	 * Konstruktor
-	 * 
-	 * @param feld
 	 */
 	public Balken() {
 	}
@@ -45,6 +43,7 @@ public class Balken {
 	 * @param e
 	 */
 	public void keyPressed(KeyEvent e) {
+		/* linke Pfeiltaste */
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			if (x > 10) {
 				x -= 201;
@@ -52,6 +51,7 @@ public class Balken {
 			} else {
 			}
 		}
+		/* rechte Pfeiltaste */
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			if (x < 613) {
 				x += 201;

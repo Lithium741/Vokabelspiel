@@ -29,9 +29,9 @@ public class Verwaltung {
 	public static String speichern(JTextField wortA, JTextField wortB, String a, int b) {
 		if (b == 0) {
 			vokabeln.add(new Vokabel(wortA.getText(), wortB.getText(), a));
-			return "Gespeichert";
+			return Start.getBundle().getString("gespeichert");
 		} else {
-			return "Nicht gespeichert";
+			return Start.getBundle().getString("nGespeichert");
 		}
 	}
 
@@ -54,13 +54,13 @@ public class Verwaltung {
 						Start.list.add(temp1.getEnglisch());
 						Start.list_1.add(temp1.getDeutsch());
 					}
-					return temp.getDeutsch() + " = " + temp.getEnglisch() + " gelöscht!";
+					return temp.getDeutsch() + " = " + temp.getEnglisch() + " " + Start.getBundle().getString("gelöscht");
 				} else {
 
 				}
 			}
 		}
-		return "Wort nicht gefunden";
+		return Start.getBundle().getString("nichtGefunden");
 	}
 
 	/**
@@ -112,7 +112,7 @@ public class Verwaltung {
 			Start.list.add(temp.getEnglisch());
 			Start.list_1.add(temp.getDeutsch());
 		}
-		return file.getName() + " geladen";
+		return file.getName() + " " + Start.getBundle().getString("geladen");
 	}
 
 	/**
@@ -150,6 +150,6 @@ public class Verwaltung {
 			Start.list.add(temp.getEnglisch());
 			Start.list_1.add(temp.getDeutsch());
 		}
-		return "Gespeichert";
+		return Start.getBundle().getString("gespeichert");
 	}
 }
