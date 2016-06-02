@@ -48,13 +48,13 @@ public class Verwaltung {
 					/* aktualisiert die Listen */
 					Start.list.removeAll();
 					Start.list_1.removeAll();
-					for (Vokabel temp1 : Verwaltung.vokabeln) {
+					for (Vokabel temp1 : vokabeln) {
 						Start.list.add(temp1.getEnglisch());
 						Start.list_1.add(temp1.getDeutsch());
 					}
 					return temp.getDeutsch() + " = " + temp.getEnglisch() + " " + Start.getBundle().getString("gelöscht");
 				} else {
-
+					
 				}
 			}
 		}

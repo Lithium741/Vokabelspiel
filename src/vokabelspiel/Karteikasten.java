@@ -3,8 +3,7 @@ package vokabelspiel;
 import javax.swing.JTextField;
 
 /**
- * Karteikasten-Klasse 
- * Funktioneller Teil des Karteikasten-Spiels
+ * Karteikasten-Klasse Funktioneller Teil des Karteikasten-Spiels
  * 
  * @author Manuel S., Mareen B., Alex B., Kevin K.
  *
@@ -29,18 +28,26 @@ public class Karteikasten {
 			 */
 			if (Verwaltung.vokabeln.get(a).getFach() > 3) {
 				a = (int) (Math.random() * (Verwaltung.vokabeln.size() - 1));
-				return getRandomVokabel();
+				try {
+					return getRandomVokabel();
+				} catch (StackOverflowError e) {
+					return "";
+				}
 			}
 			return Verwaltung.vokabeln.get(a).getDeutsch();
 		} else if ((b % 2) != 0) {
 			if (Verwaltung.vokabeln.get(a).getFach() > 3) {
 				a = (int) (Math.random() * (Verwaltung.vokabeln.size() - 1));
-				return getRandomVokabel();
+				try {
+					return getRandomVokabel();
+				} catch (StackOverflowError e) {
+					return "";
+				}
 			}
 			return Verwaltung.vokabeln.get(a).getEnglisch();
 		} else {
-			return "";
 		}
+		return "";
 	}
 
 	/**
@@ -55,7 +62,7 @@ public class Karteikasten {
 		if ((b % 2) == 0) {
 			if (wort.getText().equals(Verwaltung.vokabeln.get(a).getEnglisch())) {
 				Verwaltung.vokabeln.get(a).sprung();
-				return  Start.getBundle().getString("richtig")  + "\n" + Verwaltung.vokabeln.get(a).getDeutsch() + " = "
+				return Start.getBundle().getString("richtig") + "\n" + Verwaltung.vokabeln.get(a).getDeutsch() + " = "
 						+ Verwaltung.vokabeln.get(a).getEnglisch();
 			} else {
 				return Start.getBundle().getString("falsch") + "\n" + Verwaltung.vokabeln.get(a).getDeutsch() + " = "
