@@ -12,8 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 /**
- * Vokabelkasten-Klasse 
- * GUI-Teil des karteikasten-Spiels
+ * Vokabelkasten-Klasse GUI-Teil des karteikasten-Spiels
  * 
  * @author Manuel S., Mareen B., Alex B., Kevin K.
  *

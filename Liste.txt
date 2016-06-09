@@ -1,0 +1,35 @@
+dog,Hund,natur
+cat,Katze,natur
+mobile,Handy,alltag
+cheese,Käse,lebensmittel
+ham,Schinken,lebensmittel
+game,Spiel,alltag
+apple,Apfel,lebensmittel
+apple juice,Apfelsaft,lebensmittel
+banana,Banane,lebensmittel
+bar,Bar,alltag
+beef,Rindfleisch,lebensmittel
+beer,Bier,lebensmittel
+biscuit,Keks,lebensmittel
+bottle,Flasche,alltag
+bread,Brot,lebensmittel
+breakfast,Frühstück,lebensmittel
+bun,Brötchen,lebensmittel
+cafe,Café,alltag
+cake,Kuchen,lebensmittel
+chicken,Huhn,lebensmittel
+coffee,Kaffee,lebensmittel
+cookie,Keks,lebensmittel
+dinner,Abendbrot,alltag
+dish,Gericht,alltag
+drink,trinken,lebensmittel
+eating,Essen,alltag
+egg,Ei,lebensmittel
+street,Straße,alltag
+car,Auto,fahrzeuge
+train,Zug,fahrzeuge
+plane,Flugzeug,fahrzeuge
+umbrella,Regenschirm,alltag
+radiation,Strahlung,fachbegriffe
+energy source,Energiequelle,fachbegriffe
+camouflage,Tarnung,fachbegriffe

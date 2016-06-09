@@ -50,7 +50,7 @@ public class Start extends JFrame {
 	public static void main(String[] args) {
 		/* ruft die lokalisierungdateien ab */
 		baseName = "resources.Vokabelspiel";
-		/* Abfrage der gewünschten Sprache*/
+		/* Abfrage der gewünschten Sprache */
 		b = JOptionPane.showOptionDialog(null, "Select language", "Select language", JOptionPane.YES_NO_OPTION,
 				JOptionPane.QUESTION_MESSAGE, null, new String[] { "German", "English" }, "English");
 		if (b == 0) {
@@ -62,8 +62,7 @@ public class Start extends JFrame {
 			} catch (MissingResourceException e) {
 				System.err.println(e);
 			}
-		}
-		else if (b == 1) {
+		} else if (b == 1) {
 			c = 1;
 			/* ruft die englische lokalisierungsdatei auf */
 			Locale.setDefault(new Locale("en", "EN"));
@@ -72,6 +71,7 @@ public class Start extends JFrame {
 			} catch (MissingResourceException e) {
 				System.err.println(e);
 			}
+			/* Wenn keine Sprache gewählt wurde wird Englisch ausgewählt */
 		} else if (b != 1 && b != 0) {
 			c = 1;
 			/* ruft die englische lokalisierungsdatei auf */
@@ -267,11 +267,11 @@ public class Start extends JFrame {
 		txtrDeutsch.setText(getBundle().getString("dWort"));
 		txtrDeutsch.setBounds(380, 53, 225, 22);
 		Verwaltung.add(txtrDeutsch);
-		
+
 		Icon icon1 = new ImageIcon(getClass().getResource("/britmerican.png"));
 		Icon icon2 = new ImageIcon(getClass().getResource("/german.png"));
 
-		/* Flaggen-Icon in der linken unteren Ecke*/
+		/* Flaggen-Icon in der linken unteren Ecke */
 		JLabel lblNewLabel;
 		if (c == 0) {
 			lblNewLabel = new JLabel(icon2);
@@ -282,7 +282,7 @@ public class Start extends JFrame {
 		}
 		lblNewLabel.setBounds(10, 370, 38, 28);
 		Verwaltung.add(lblNewLabel);
-		
+
 		JPanel Spiele = new JPanel();
 		tabbedPane.addTab(getBundle().getString("spiele"), null, Spiele, null);
 		Spiele.setLayout(null);
